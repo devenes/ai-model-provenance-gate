@@ -49,8 +49,6 @@ for target in "${TARGETS[@]}"; do
     -ldflags="-s -w -X ${MODULE}/internal/version.ToolVersion=${VERSION} -X ${MODULE}/internal/version.GitCommit=${GIT_COMMIT} -X ${MODULE}/internal/version.BuildDate=${BUILD_DATE} -X ${MODULE}/internal/version.BuildType=${BUILD_TYPE}" \
     -o "${STAGE_DIR}/${BINARY}${EXT}" "${ROOT_DIR}/cmd/ai-model-provenance"
 
-  cp "${STAGE_DIR}/${BINARY}${EXT}" "${STANDALONE_BIN}"
-
   FILE_DESC="$(file -b "${STAGE_DIR}/${BINARY}${EXT}")"
   BIN_SHA256="$(shasum -a 256 "${STAGE_DIR}/${BINARY}${EXT}" | awk '{print $1}')"
   BIN_SIZE="$(wc -c < "${STAGE_DIR}/${BINARY}${EXT}" | tr -d ' ')"
@@ -82,6 +80,10 @@ for target in "${TARGETS[@]}"; do
     tar -C "${DIST_DIR}" -czf "${DIST_DIR}/${ARCHIVE_NAME}" "${STAGE_NAME}"
     tar -tzf "${DIST_DIR}/${ARCHIVE_NAME}" >/dev/null
   fi
+
+  cp "${STAGE_DIR}/${BINARY}${EXT}" "${DIST_DIR}/${BINARY}.tmp"
+  rm -rf "${STAGE_DIR}"
+  mv "${DIST_DIR}/${BINARY}.tmp" "${STANDALONE_BIN}"
 
   ARCHIVE_SHA256="$(shasum -a 256 "${DIST_DIR}/${ARCHIVE_NAME}" | awk '{print $1}')"
   ARCHIVE_SIZE="$(wc -c < "${DIST_DIR}/${ARCHIVE_NAME}" | tr -d ' ')"
