@@ -109,8 +109,6 @@ EOF
     MANIFEST_ENTRIES="${MANIFEST_ENTRIES},
 ${ENTRY}"
   fi
-
-  rm -rf "${STAGE_DIR}"
 done
 
 (
