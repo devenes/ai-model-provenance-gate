@@ -1,0 +1,39 @@
+{
+  "schema_version": "final-validation-summary/v1",
+  "project": "ai-model-provenance-gate",
+  "version": "0.1.0",
+  "timestamp": "2026-10-31T00:41:00+03:00",
+  "environment": {
+    "os": "macOS 27.0.1 (Build 26A434)",
+    "arch": "darwin/arm64",
+    "cpu": "Apple M1 (8 cores)",
+    "ram_bytes": 8589934592,
+    "go_toolchain": "go1.27.3 darwin/arm64",
+    "git_version": "2.54.0"
+  },
+  "quality_gates": {
+    "gofmt": "PASS",
+    "go_vet": "PASS",
+    "go_test_unit": "PASS",
+    "go_test_race": "PASS",
+    "golangci_lint": "PASS (0 issues)",
+    "govulncheck": "PASS (No vulnerabilities found)",
+    "shellcheck": "PASS (0 issues)",
+    "cyclonedx_schema_validation": "PASS",
+    "oms_native_v1_conformance": "PASS",
+    "oms_external_cli_execution": "BLOCKED (model_signing Python CLI not installed on host; verified fail-closed BLOCKED behavior)",
+    "llm_release_gate_adapter": "PASS (verified against synthetic bound/unbound/tampered reports and live read-only sibling fixture)",
+    "e2e_14_step_demonstration": "PASS (approved bundle exit 0 PASS; tampered tokenizer deployment bundle exit 1 FAIL)",
+    "cross_compilation_darwin_arm64": "PASS (compiled + runtime tested)",
+    "cross_compilation_darwin_amd64": "PASS (cross-compiled only; runtime not executed on amd64 host)",
+    "cross_compilation_linux_amd64": "PASS (cross-compiled only; runtime not executed on Linux host)",
+    "cross_compilation_linux_arm64": "PASS (cross-compiled only; runtime not executed on Linux host)",
+    "cross_compilation_windows_amd64": "PASS (cross-compiled only; runtime not executed on Windows host)"
+  },
+  "e2e_evidence_digests": {
+    "approved_bundle_id": "sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4",
+    "cyclonedx_1_7_bom_digest": "sha256:db87f2439fd3f03cadea88dd124b691334444525475e3ae0836e7cd893e989dc",
+    "deployment_composition_id": "sha256:45d9afad2900c634bc75152d08bc2176a8d1743dc5baf982c6360f70fac986b9",
+    "tampered_deployment_bundle_id": "sha256:b870647c39f9d299b394f48d1c67752a186e7aab6dd0368b1d884decd7ec40b5"
+  }
+}

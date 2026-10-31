@@ -1,0 +1,226 @@
+================================================================================
+AI Model Provenance Gate v0.1.0-rc.1 — Phase 1 Quality Gate Results
+Timestamp: 2026-10-31T05:35:34Z
+Go Version: go version go1.27.3 darwin/arm64
+================================================================================
+
+---> 1. gofmt -s -l .
+PASS (0 unformatted files)
+
+---> 2. go vet ./...
+PASS (go vet ./... exited 0)
+
+---> 3. go test -count=1 ./...
+?   	github.com/devenes/ai-model-provenance-gate/cmd/ai-model-provenance	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/attestation	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bom	0.711s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bundle	0.410s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/cli	0.427s
+?   	github.com/devenes/ai-model-provenance-gate/internal/config	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/deployment	0.495s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/digest	0.286s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/evaluation/llmreleasegate	0.487s
+?   	github.com/devenes/ai-model-provenance-gate/internal/evidence	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/formats/huggingface	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/formats/peft	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/formats/safetensors	0.234s
+?   	github.com/devenes/ai-model-provenance-gate/internal/identity	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/inventory	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/manifest	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/oms	0.285s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/policy	0.289s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/provenance	0.329s
+?   	github.com/devenes/ai-model-provenance-gate/internal/report	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/scanner	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/signing	0.354s
+?   	github.com/devenes/ai-model-provenance-gate/internal/verification	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/version	[no test files]
+PASS (go test -count=1 ./... exited 0)
+
+---> 4. go test -count=1 -race ./...
+?   	github.com/devenes/ai-model-provenance-gate/cmd/ai-model-provenance	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/attestation	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bom	1.879s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bundle	1.392s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/cli	2.065s
+?   	github.com/devenes/ai-model-provenance-gate/internal/config	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/deployment	1.977s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/digest	1.249s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/evaluation/llmreleasegate	1.350s
+?   	github.com/devenes/ai-model-provenance-gate/internal/evidence	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/formats/huggingface	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/formats/peft	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/formats/safetensors	1.267s
+?   	github.com/devenes/ai-model-provenance-gate/internal/identity	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/inventory	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/manifest	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/oms	1.507s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/policy	1.324s
+ok  	github.com/devenes/ai-model-provenance-gate/internal/provenance	1.294s
+?   	github.com/devenes/ai-model-provenance-gate/internal/report	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/scanner	[no test files]
+ok  	github.com/devenes/ai-model-provenance-gate/internal/signing	1.629s
+?   	github.com/devenes/ai-model-provenance-gate/internal/verification	[no test files]
+?   	github.com/devenes/ai-model-provenance-gate/internal/version	[no test files]
+PASS (go test -count=1 -race ./... exited 0)
+
+---> 5. golangci-lint run ./...
+0 issues.
+PASS (golangci-lint run ./... exited 0)
+
+---> 6. govulncheck ./...
+No vulnerabilities found.
+PASS (govulncheck ./... exited 0)
+
+---> 7. go mod verify
+all modules verified
+
+---> 8. shellcheck scripts/*.sh
+PASS (shellcheck scripts/*.sh exited 0)
+
+---> 9. make check
+go vet ./...
+go test -v -count=1 -race -coverprofile=coverage.out ./...
+	github.com/devenes/ai-model-provenance-gate/cmd/ai-model-provenance		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/attestation		coverage: 0.0% of statements
+=== RUN   TestBOMAcceptanceCriteria
+--- PASS: TestBOMAcceptanceCriteria (0.55s)
+=== RUN   TestCycloneDX17OfficialSchemaAndNegativeCases
+--- PASS: TestCycloneDX17OfficialSchemaAndNegativeCases (0.37s)
+PASS
+coverage: 73.3% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bom	2.357s	coverage: 73.3% of statements
+=== RUN   TestIdentityAcceptanceCriteria
+--- PASS: TestIdentityAcceptanceCriteria (0.17s)
+=== RUN   TestBundleErrorAndAdversarialCases
+--- PASS: TestBundleErrorAndAdversarialCases (0.03s)
+=== RUN   TestLoRARelationshipStates
+--- PASS: TestLoRARelationshipStates (0.08s)
+PASS
+coverage: 73.2% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/bundle	1.578s	coverage: 73.2% of statements
+=== RUN   TestEndToEndProductThesisLifecycle
+--- PASS: TestEndToEndProductThesisLifecycle (1.01s)
+=== RUN   TestCLIHelpAndAliasesUX
+--- PASS: TestCLIHelpAndAliasesUX (0.00s)
+PASS
+coverage: 58.9% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/cli	2.553s	coverage: 58.9% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/config		coverage: 0.0% of statements
+=== RUN   TestPolicyAttestationAndDeploymentMatrix
+--- PASS: TestPolicyAttestationAndDeploymentMatrix (0.90s)
+PASS
+coverage: 82.3% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/deployment	2.427s	coverage: 82.3% of statements
+=== RUN   TestStreamFileAndDeterminism
+--- PASS: TestStreamFileAndDeterminism (0.01s)
+=== RUN   TestStreamFileDetectsConcurrentMutation
+--- PASS: TestStreamFileDetectsConcurrentMutation (0.01s)
+=== RUN   TestStreamFileRejectsSymlinkAndOversized
+--- PASS: TestStreamFileRejectsSymlinkAndOversized (0.00s)
+PASS
+coverage: 63.8% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/digest	1.325s	coverage: 63.8% of statements
+=== RUN   TestEvaluationEvidenceAcceptanceMatrix
+--- PASS: TestEvaluationEvidenceAcceptanceMatrix (0.17s)
+=== RUN   TestReadOnlySiblingLLMReleaseGateFixtureCompatibility
+--- PASS: TestReadOnlySiblingLLMReleaseGateFixtureCompatibility (0.00s)
+PASS
+coverage: 74.6% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/evaluation/llmreleasegate	1.526s	coverage: 74.6% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/evidence		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/formats/huggingface		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/formats/peft		coverage: 0.0% of statements
+=== RUN   TestInspectValidSafetensorsAndShards
+--- PASS: TestInspectValidSafetensorsAndShards (0.01s)
+=== RUN   TestInspectRejectsDisguisedPickleAndOversizedHeader
+--- PASS: TestInspectRejectsDisguisedPickleAndOversizedHeader (0.00s)
+=== RUN   TestSafetensorsAdversarialHeadersAndOffsets
+--- PASS: TestSafetensorsAdversarialHeadersAndOffsets (0.01s)
+PASS
+coverage: 85.8% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/formats/safetensors	1.306s	coverage: 85.8% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/identity		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/inventory		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/manifest		coverage: 0.0% of statements
+=== RUN   TestOMSSigningAndVerificationMatrix
+--- PASS: TestOMSSigningAndVerificationMatrix (0.05s)
+PASS
+coverage: 35.8% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/oms	1.376s	coverage: 35.8% of statements
+=== RUN   TestPolicyFailClosedAndExpiredExceptions
+--- PASS: TestPolicyFailClosedAndExpiredExceptions (0.01s)
+PASS
+coverage: 55.6% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/policy	1.369s	coverage: 55.6% of statements
+=== RUN   TestVerifyUpstreamSLSAV12Provenance
+--- PASS: TestVerifyUpstreamSLSAV12Provenance (0.08s)
+PASS
+coverage: 78.0% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/provenance	1.378s	coverage: 78.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/report		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/scanner		coverage: 0.0% of statements
+=== RUN   TestMultiCurveECDSAAndRSASigning
+=== RUN   TestMultiCurveECDSAAndRSASigning/P-256
+=== RUN   TestMultiCurveECDSAAndRSASigning/P-384
+=== RUN   TestMultiCurveECDSAAndRSASigning/P-521
+=== RUN   TestMultiCurveECDSAAndRSASigning/RSA-2048
+--- PASS: TestMultiCurveECDSAAndRSASigning (0.28s)
+    --- PASS: TestMultiCurveECDSAAndRSASigning/P-256 (0.00s)
+    --- PASS: TestMultiCurveECDSAAndRSASigning/P-384 (0.05s)
+    --- PASS: TestMultiCurveECDSAAndRSASigning/P-521 (0.12s)
+    --- PASS: TestMultiCurveECDSAAndRSASigning/RSA-2048 (0.11s)
+=== RUN   TestCertificateChainValidationAndNegativeCases
+--- PASS: TestCertificateChainValidationAndNegativeCases (0.01s)
+=== RUN   TestVerifyHistoricalAndPositiveCertBundles
+--- PASS: TestVerifyHistoricalAndPositiveCertBundles (0.07s)
+PASS
+coverage: 62.9% of statements
+ok  	github.com/devenes/ai-model-provenance-gate/internal/signing	1.653s	coverage: 62.9% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/verification		coverage: 0.0% of statements
+	github.com/devenes/ai-model-provenance-gate/internal/version		coverage: 0.0% of statements
+golangci-lint run ./...
+0 issues.
+/Users/enes/go/bin/govulncheck ./...
+No vulnerabilities found.
+CGO_ENABLED=0 go build -trimpath -ldflags="-s -w -X github.com/devenes/ai-model-provenance-gate/internal/version.ToolVersion=0.1.0-rc.1 -X github.com/devenes/ai-model-provenance-gate/internal/version.GitCommit=eafb5e9 -X github.com/devenes/ai-model-provenance-gate/internal/version.BuildDate=2026-10-31T05:35:47Z -X github.com/devenes/ai-model-provenance-gate/internal/version.BuildType=local" -o bin/ai-model-provenance ./cmd/ai-model-provenance
+./scripts/run-e2e-demo.sh
+==> [Step 1] Creating synthetic local Hugging Face + Safetensors + LoRA model bundle...
+==> [Step 2 & 3] Inspecting model bundle & deriving deterministic bundle-identity/v1...
+COMMAND=inspect GATE_STATUS=PASS BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 FILES=8 MANIFEST=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/01-inspect/bundle-manifest.json JSON=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/01-inspect/inspect-report.json MARKDOWN=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/01-inspect/inspect-report.md
+    Derived Model Bundle Identity: sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4
+==> [Step 4] Generating and validating CycloneDX 1.7 AI/ML-BOM...
+COMMAND=bom-generate STATUS=PASS SPEC=1.7 BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 BOM_DIGEST=sha256:065090c31b2029868e23e3f0e45fa7a64bd62d34470427b6889e766cc44ccbb1 OUTPUT=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/02-bom/bom.cdx.json
+COMMAND=bom-validate STATUS=PASS BOM=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/02-bom/bom.cdx.json
+==> [Step 5 & 6] Generating ephemeral test keys, signing OMS v1.0 bundle, and verifying signature...
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:6d96519bb0155408eaf7b37ebf541a517ac028523a8a1a6e2ebe071adae3f511 PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/model-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/model-signer.pub
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:a30e2befb456de6ced677e28e4d6f535f1097ff35cff2e1931c6d5f5984a8d7a PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/eval-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/eval-signer.pub
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:2d19512cc4f6f51004a898b2dcbfd76f0a0f0b453dface80b70e808b4030fa55 PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/release-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.6kby9kcbXe/ephemeral-keys/release-signer.pub
+COMMAND=oms-sign STATUS=PASS BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 KEY_FP=sha256:6d96519bb0155408eaf7b37ebf541a517ac028523a8a1a6e2ebe071adae3f511 OUTPUT=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/03-oms/model.sig.json
+COMMAND=oms-verify STATUS=VERIFIED BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 SIGNER_FP=sha256:6d96519bb0155408eaf7b37ebf541a517ac028523a8a1a6e2ebe071adae3f511 FILES=8
+==> [Step 7] Creating & signing bound LLM Release Gate evaluation report (TEST-ONLY FIXTURE)...
+COMMAND=evidence-bind-eval STATUS=PASS BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 SIGNER_FP=sha256:a30e2befb456de6ced677e28e4d6f535f1097ff35cff2e1931c6d5f5984a8d7a OUTPUT=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/04-evaluation/eval-attestation.dsse.json
+==> [Step 8, 9, 10] Evaluating strict release policy & signing in-toto Release Qualification Attestation...
+COMMAND=gate-evaluate GATE_STATUS=PASS EXIT_CODE=0 BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 BOM_DIGEST=sha256:065090c31b2029868e23e3f0e45fa7a64bd62d34470427b6889e766cc44ccbb1 JSON=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/05-gate-evaluate/gate-report.json MARKDOWN=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/05-gate-evaluate/gate-report.md
+  [INFO/bundle] BUNDLE_IDENTITY_DETERMINISTIC: computed deterministic model bundle identity sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 (8 files, 1200 bytes)
+  [WARNING/lora] LORA_BASE_MODEL_DECLARED_UNVERIFIED: base_model_name_or_path="meta-llama/Llama-3-8B" (revision="043235d6088ecd3dd5fb5ca3592b6913fd516027") is declared in adapter_config.json without cryptographic verification of base model weights
+  [INFO/bom] CYCLONEDX_BOM_VALIDATED: validated CycloneDX 1.7 AI/ML-BOM (sha256:065090c31b2029868e23e3f0e45fa7a64bd62d34470427b6889e766cc44ccbb1) with 1:1 file inventory correspondence
+  [INFO/signing] OMS_SIGNATURE_VERIFIED: verified OMS signature (https://model_signing/signature/v1.0) by trusted signer "test-model-signer-1" (sha256:6d96519bb0155408eaf7b37ebf541a517ac028523a8a1a6e2ebe071adae3f511)
+  [INFO/evaluation] EVALUATION_QUALIFIED: evaluation PASS verified (runId=run-e2e-demo-001, binding=MATCHED, mode=NATIVE_CI_EVALUATOR, trust=VERIFIED_TRUSTED)
+  [INFO/deployment] RUNTIME_IMAGE_IMMUTABLE: verified immutable runtime image digest "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777"
+==> [Step 11] Copying approved model bundle to deployment staging & running release verify (expect PASS)...
+COMMAND=release-verify GATE_STATUS=PASS EXIT_CODE=0 BUNDLE_ID=sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 COMPOSITION_ID=sha256:45d9afad2900c634bc75152d08bc2176a8d1743dc5baf982c6360f70fac986b9 JSON=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/06-release-verify-pass/verify-report.json MARKDOWN=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/06-release-verify-pass/verify-report.md
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 (8 files, 1200 bytes)
+  [INFO/attestation] RELEASE_ATTESTATION_VERIFIED: verified signed release qualification attestation (sha256:2d19512cc4f6f51004a898b2dcbfd76f0a0f0b453dface80b70e808b4030fa55) matching bundle sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4
+  [INFO/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED: deployment descriptor model_bundle_id matches live bundle
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:2952fe8adb1568081442c08415913b5c97739eb630b64dfdc1b13beb95a963f4
+==> [Step 12, 13, 14] Modifying tokenizer in deployment bundle and re-running release verify (expect FAIL)...
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:b870647c39f9d299b394f48d1c67752a186e7aab6dd0368b1d884decd7ec40b5 COMPOSITION_ID=sha256:45d9afad2900c634bc75152d08bc2176a8d1743dc5baf982c6360f70fac986b9 JSON=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/07-release-verify-tampered/verify-report.json MARKDOWN=/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/07-release-verify-tampered/verify-report.md
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:b870647c39f9d299b394f48d1c67752a186e7aab6dd0368b1d884decd7ec40b5 (8 files, 1194 bytes)
+  [ERROR/attestation] DEPLOYMENT_ARTIFACT_TAMPERED: inspected model bundle identity sha256:b870647c39f9d299b394f48d1c67752a186e7aab6dd0368b1d884decd7ec40b5 does not match attested release subject sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 (artifact modified or substituted)
+  [ERROR/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MISMATCH: deployment descriptor model_bundle_id sha256:c0a72555e7a14d64e27e5f559b14a2c564d502064043e8a2e5cbca8130d9a3e4 does not match live bundle sha256:b870647c39f9d299b394f48d1c67752a186e7aab6dd0368b1d884decd7ec40b5
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:2952fe8adb1568081442c08415913b5c97739eb630b64dfdc1b13beb95a963f4
+==> E2E Demonstration succeeded! Approved bundle PASSED (exit 0) and tampered bundle FAILED (exit 1).
+PASS (make check exited 0)

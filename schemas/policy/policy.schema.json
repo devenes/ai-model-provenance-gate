@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devenes/ai-model-provenance-gate/schemas/policy/policy.schema.json",
+  "title": "AI Model Provenance Gate Policy Schema v1",
+  "description": "Fail-closed release qualification and deployment verification policy configuration.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bundle",
+    "signing",
+    "evaluation",
+    "scanner",
+    "deployment",
+    "release"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "name": {
+      "type": "string"
+    },
+    "bundle": {
+      "type": "object",
+      "required": ["reject_symlinks", "require_deterministic_identity"],
+      "properties": {
+        "reject_symlinks": { "type": "boolean" },
+        "require_deterministic_identity": { "type": "boolean" },
+        "allow_unknown_files": { "type": "boolean" },
+        "require_verified_lora_base": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "signing": {
+      "type": "object",
+      "required": ["require_oms", "trusted_signers"],
+      "properties": {
+        "require_oms": { "type": "boolean" },
+        "oms_mode": { "type": "string", "enum": ["native", "external-cli"] },
+        "trusted_signers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/trustedSigner" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "evaluation": {
+      "type": "object",
+      "required": ["required_status", "require_artifact_binding", "require_trusted_evidence"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "required_status": { "type": "string", "const": "PASS" },
+        "require_artifact_binding": { "type": "boolean" },
+        "require_trusted_evidence": { "type": "boolean" },
+        "allow_post_hoc_binding": { "type": "boolean" },
+        "max_age_hours": { "type": "integer", "minimum": 0 },
+        "expected_suite_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "expected_dataset_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "trusted_signers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/trustedSigner" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "require_upstream_slsa": { "type": "boolean" },
+        "trusted_builders": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "trusted_signers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/trustedSigner" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "scanner": {
+      "type": "object",
+      "required": ["required"],
+      "properties": {
+        "required": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "deployment": {
+      "type": "object",
+      "required": ["require_immutable_image"],
+      "properties": {
+        "require_immutable_image": { "type": "boolean" },
+        "require_serving_config": { "type": "boolean" },
+        "allowed_adapters": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "release": {
+      "type": "object",
+      "required": ["decision_mode"],
+      "properties": {
+        "decision_mode": { "type": "string", "enum": ["strict", "audit", "permissive"] },
+        "require_signed_qualification": { "type": "boolean" },
+        "trusted_signers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/trustedSigner" }
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "rule", "reason", "approved_by"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "rule": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 },
+              "approved_by": { "type": "string", "minLength": 1 },
+              "expires_at": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "trustedSigner": {
+      "type": "object",
+      "required": ["id", "public_key_path"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "allow_operator_endorsement": { "type": "boolean" },
+        "key_id": { "type": "string" },
+        "key_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "public_key_path": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

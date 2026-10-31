@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_live_oidc:
+        description: "Run optional live Sigstore OIDC conformance suite against ossf/model-signing-spec"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build, Test, Lint, Security & E2E Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.27.3
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.3"
+          cache: true
+
+      - name: Check gofmt formatting
+        run: make fmt-check
+
+      - name: Run go vet
+        run: make vet
+
+      - name: Lint shell scripts with ShellCheck
+        run: shellcheck scripts/*.sh
+
+      - name: Build CLI binary
+        run: make build
+
+      - name: Smoke test CLI subcommands and --help UX
+        run: |
+          ./bin/ai-model-provenance version
+          ./bin/ai-model-provenance version --json
+          ./bin/ai-model-provenance --help
+          ./bin/ai-model-provenance inspect --help
+          ./bin/ai-model-provenance bom --help
+          ./bin/ai-model-provenance oms --help
+          ./bin/ai-model-provenance evidence --help
+          ./bin/ai-model-provenance gate --help
+          ./bin/ai-model-provenance release --help
+
+      - name: Run unit and integration tests with race detector
+        run: make test-race
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+
+      - name: Run govulncheck
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./...
+
+      - name: Execute 14-step End-to-End Product Thesis Demonstration
+        run: make e2e
+
+      - name: Verify cross-compilation packaging
+        run: make release-artifacts
+
+      - name: Upload E2E validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-validation-artifacts
+          path: artifacts/final-validation/
+
+  oms-live-oidc-conformance:
+    name: Optional Live Sigstore OIDC Conformance (workflow_dispatch only)
+    if: github.event_name == 'workflow_dispatch' && inputs.run_live_oidc == true
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.27.3
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.3"
+          cache: true
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build CLI binary
+        run: make build
+
+      - name: Clone ossf/model-signing-spec and run conformance suite
+        run: |
+          git clone --depth 1 https://github.com/ossf/model-signing-spec.git /tmp/model-signing-spec
+          python -m pip install --upgrade pip pytest model-signing
+          cd /tmp/model-signing-spec/conformance
+          pytest --entrypoint="${GITHUB_WORKSPACE}/bin/ai-model-provenance" -v

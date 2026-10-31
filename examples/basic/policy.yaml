@@ -1,0 +1,46 @@
+# Example Strict Release Policy (Test-Only Reference)
+schema_version: "v1"
+name: "example-strict-policy"
+
+bundle:
+  reject_symlinks: true
+  require_deterministic_identity: true
+  allow_unknown_files: false
+
+signing:
+  require_oms: true
+  oms_mode: "native"
+  trusted_signers:
+    - id: "example-model-signer"
+      name: "Example Model Signer"
+      key_id: "example-model-signer"
+      public_key_path: "./keys/model-signer.pub"
+
+evaluation:
+  required: true
+  required_status: PASS
+  require_artifact_binding: true
+  require_trusted_evidence: true
+  trusted_signers:
+    - id: "example-eval-signer"
+      name: "Example Evaluation Signer"
+      key_id: "example-eval-signer"
+      public_key_path: "./keys/eval-signer.pub"
+
+scanner:
+  required: false
+
+deployment:
+  require_immutable_image: true
+  require_serving_config: true
+  allowed_adapters:
+    - "support-lora-v2"
+
+release:
+  decision_mode: strict
+  require_signed_qualification: true
+  trusted_signers:
+    - id: "example-release-signer"
+      name: "Example Release Authority"
+      key_id: "example-release-signer"
+      public_key_path: "./keys/release-signer.pub"

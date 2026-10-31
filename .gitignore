@@ -1,0 +1,20 @@
+# Compiled binaries and release archives
+/bin/
+/dist/
+/ai-model-provenance
+/ai-model-provenance-gate
+*.tar.gz
+*.zip
+*.exe
+
+# Coverage and test output
+coverage.out
+*.test
+
+# Never commit private cryptographic keys
+*.key
+*.pem
+!*example*.pub
+
+# OS files
+.DS_Store

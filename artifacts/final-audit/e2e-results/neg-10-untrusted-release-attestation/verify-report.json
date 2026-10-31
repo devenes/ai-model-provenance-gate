@@ -1,0 +1,191 @@
+{
+  "schema_version": "ai-model-provenance-gate.report/v1",
+  "command": "release-verify",
+  "timestamp": "2026-10-30T23:17:04Z",
+  "tool": {
+    "name": "ai-model-provenance-gate",
+    "version": "0.1.0",
+    "gitCommit": "eafb5e9",
+    "gitTreeState": "clean",
+    "buildDate": "2026-10-30T23:14:15Z",
+    "buildType": "local",
+    "goVersion": "go1.27.3",
+    "platform": "darwin/arm64",
+    "schemaVersion": "ai-model-provenance-gate.report/v1"
+  },
+  "gate_status": "FAIL",
+  "exit_code": 1,
+  "bundle_id": "sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a",
+  "composition_id": "sha256:e65bd90789bf5847156a7ca7b4b272f331f139e40271406ef806526dfe8c9a72",
+  "release_attestation_digest": "sha256:f6895e4598e291d8a88bd01ea2652f1e29d9418cda121032968f295296499b0d",
+  "deployment": {
+    "gate_status": "FAIL",
+    "exit_code": 1,
+    "bundle_id": "sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a",
+    "composition_id": "sha256:e65bd90789bf5847156a7ca7b4b272f331f139e40271406ef806526dfe8c9a72",
+    "descriptor_bundle_id": "sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a",
+    "runtime_image": "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777",
+    "runtime_image_immutable": true,
+    "expected_serving_config_digest": "sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675",
+    "observed_serving_config_digest": "sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675",
+    "active_adapters": [
+      "support-lora-v2"
+    ],
+    "qualification_verification": {
+      "status": "UNTRUSTED",
+      "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-audit/e2e-results/neg-10-untrusted-gate-out/attestation.json",
+      "attestation_digest": "sha256:f6895e4598e291d8a88bd01ea2652f1e29d9418cda121032968f295296499b0d",
+      "signer_key_id": "untrusted-signer-1",
+      "predicate": {
+        "schema_version": "",
+        "timestamp": "",
+        "tool": {
+          "name": "",
+          "version": "",
+          "gitCommit": "",
+          "gitTreeState": "",
+          "buildDate": "",
+          "buildType": "",
+          "goVersion": "",
+          "platform": "",
+          "schemaVersion": ""
+        },
+        "bundle": {
+          "bundle_id": "",
+          "manifest_digest": "",
+          "file_count": 0,
+          "total_bytes": 0,
+          "primary_format": "",
+          "lora_status": ""
+        },
+        "bom": {
+          "digest": "",
+          "spec_version": ""
+        },
+        "oms_verification": {
+          "status": ""
+        },
+        "evaluation": {
+          "present": false
+        },
+        "scanner": {
+          "status": ""
+        },
+        "upstream_provenance": {
+          "status": "",
+          "slsa_claim_note": ""
+        },
+        "policy": {
+          "schema_version": "",
+          "digest": "",
+          "decision_mode": ""
+        },
+        "decision": {
+          "gate_status": "",
+          "exit_code": 0,
+          "reasons": null
+        }
+      },
+      "reason": "signature keyid/hint \"untrusted-signer-1\" does not match any configured trusted signer (1 trusted signers checked)"
+    },
+    "reasons": [
+      {
+        "code": "DEPLOYMENT_BUNDLE_INSPECTED",
+        "category": "bundle",
+        "severity": "info",
+        "status": "PASS",
+        "message": "re-computed live model bundle identity sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a (8 files, 1194 bytes)"
+      },
+      {
+        "code": "RELEASE_ATTESTATION_UNTRUSTED_SIGNER",
+        "category": "attestation",
+        "severity": "error",
+        "status": "FAIL",
+        "message": "signature keyid/hint \"untrusted-signer-1\" does not match any configured trusted signer (1 trusted signers checked)"
+      },
+      {
+        "code": "DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED",
+        "category": "deployment",
+        "severity": "info",
+        "status": "PASS",
+        "message": "deployment descriptor model_bundle_id matches live bundle"
+      },
+      {
+        "code": "DEPLOYMENT_RUNTIME_IMAGE_VERIFIED",
+        "category": "deployment",
+        "severity": "info",
+        "status": "PASS",
+        "message": "verified deployment runtime image \"ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777\""
+      },
+      {
+        "code": "DEPLOYMENT_SERVING_CONFIG_VERIFIED",
+        "category": "deployment",
+        "severity": "info",
+        "status": "PASS",
+        "message": "verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675"
+      }
+    ],
+    "scope_limitation": "Verifies local deployment descriptor and local model bundle contents offline; does NOT query or verify live Kubernetes workloads or cloud control planes."
+  },
+  "policy": {
+    "schema_version": "v1",
+    "name": "final-audit-strict-policy",
+    "digest": "sha256:8d03a624eeb133833230c14056f6df039be455e3e49b811e2c8bfd2bad996434",
+    "decision_mode": "strict"
+  },
+  "guarantees": {
+    "artifact_integrity": "OBSERVED (sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a)",
+    "artifact_authenticity": "ATTESTATION_UNTRUSTED",
+    "signer_trust": "SIGNER= ()",
+    "artifact_provenance": "BOUND_VIA_RELEASE_ATTESTATION",
+    "security_scan_evidence": "RECORDED_IN_ATTESTATION",
+    "behavioral_evaluation": "RECORDED_IN_ATTESTATION",
+    "release_qualification": "UNTRUSTED (subject=)",
+    "deployment_identity": "REJECTED (FAIL)"
+  },
+  "reasons": [
+    {
+      "code": "DEPLOYMENT_BUNDLE_INSPECTED",
+      "category": "bundle",
+      "severity": "info",
+      "status": "PASS",
+      "message": "re-computed live model bundle identity sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a (8 files, 1194 bytes)"
+    },
+    {
+      "code": "RELEASE_ATTESTATION_UNTRUSTED_SIGNER",
+      "category": "attestation",
+      "severity": "error",
+      "status": "FAIL",
+      "message": "signature keyid/hint \"untrusted-signer-1\" does not match any configured trusted signer (1 trusted signers checked)"
+    },
+    {
+      "code": "DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "deployment descriptor model_bundle_id matches live bundle"
+    },
+    {
+      "code": "DEPLOYMENT_RUNTIME_IMAGE_VERIFIED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "verified deployment runtime image \"ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777\""
+    },
+    {
+      "code": "DEPLOYMENT_SERVING_CONFIG_VERIFIED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "verify-report.md",
+      "role": "markdown-report",
+      "path": "verify-report.md",
+      "sha256": "sha256:1785240db8b8825c061e1e12b7f96f7d272baf9e86eb6711a7f5f7ddfe5c612b"
+    }
+  ]
+}

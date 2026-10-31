@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devenes/ai-model-provenance-gate/schemas/reports/cyclonedx-mlbom-profile.schema.json",
+  "title": "CycloneDX 1.6/1.7 AI/ML-BOM Validation Schema Profile",
+  "description": "Strict project ML-BOM profile validation schema layered on top of the official CycloneDX 1.6 and 1.7 JSON Schemas.",
+  "type": "object",
+  "required": [
+    "$schema",
+    "bomFormat",
+    "specVersion",
+    "serialNumber",
+    "version",
+    "metadata",
+    "components",
+    "dependencies"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "enum": [
+        "http://cyclonedx.org/schema/bom-1.6.schema.json",
+        "http://cyclonedx.org/schema/bom-1.7.schema.json"
+      ]
+    },
+    "bomFormat": {
+      "type": "string",
+      "const": "CycloneDX"
+    },
+    "specVersion": {
+      "type": "string",
+      "enum": ["1.6", "1.7"]
+    },
+    "serialNumber": {
+      "type": "string",
+      "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["timestamp", "tools", "component"],
+      "properties": {
+        "timestamp": { "type": "string", "minLength": 1 },
+        "tools": {
+          "type": "object",
+          "required": ["components"],
+          "properties": {
+            "components": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/component" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "component": { "$ref": "#/$defs/component" },
+        "properties": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/property" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/component" }
+    },
+    "dependencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["ref", "dependsOn"],
+        "properties": {
+          "ref": { "type": "string", "minLength": 1 },
+          "dependsOn": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "property": {
+      "type": "object",
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "value": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "hash": {
+      "type": "object",
+      "required": ["alg", "content"],
+      "properties": {
+        "alg": { "type": "string", "const": "SHA-256" },
+        "content": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "modelCard": {
+      "type": "object",
+      "required": ["modelParameters"],
+      "properties": {
+        "bom-ref": { "type": "string", "minLength": 1 },
+        "modelParameters": {
+          "type": "object",
+          "minProperties": 1,
+          "properties": {
+            "task": { "type": "string", "minLength": 1 },
+            "architectureFamily": { "type": "string", "minLength": 1 },
+            "modelArchitecture": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "properties": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/property" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pedigree": {
+      "type": "object",
+      "required": ["ancestors"],
+      "properties": {
+        "ancestors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/component" }
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": ["type", "bom-ref", "name"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["machine-learning-model", "file", "data", "application"]
+        },
+        "bom-ref": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "purl": { "type": "string" },
+        "hashes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/hash" }
+        },
+        "licenses": { "type": "array" },
+        "externalReferences": { "type": "array" },
+        "modelCard": { "$ref": "#/$defs/modelCard" },
+        "pedigree": { "$ref": "#/$defs/pedigree" },
+        "properties": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/property" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

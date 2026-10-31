@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "ai-model-provenance.release-manifest/v1",
+  "name": "ai-model-provenance",
+  "version": "0.1.0-rc.1",
+  "gitCommit": "eafb5e9",
+  "buildDate": "2026-10-31T05:36:29Z",
+  "buildType": "release-candidate",
+  "goVersion": "go1.27.3",
+  "hostPlatform": "darwin/arm64",
+  "artifacts": [
+    {
+      "os": "darwin",
+      "arch": "arm64",
+      "binary": "ai-model-provenance",
+      "binarySha256": "85e0df7c8e7c806ed7d5d6747844be6098d96aa9365250fca841b6de122ffe3a",
+      "binarySizeBytes": 7379858,
+      "fileHeader": "Mach-O 64-bit executable arm64",
+      "archive": "ai-model-provenance_0.1.0-rc.1_darwin_arm64.tar.gz",
+      "sha256": "3867f7bc8dd05ee77f92c43e1fb8442068c06aa93e0eaaaec3b8f1e303adb498",
+      "sizeBytes": 2873396,
+      "runtimeSmokeTest": "PASS (native darwin/arm64 execution verified)"
+    },
+    {
+      "os": "darwin",
+      "arch": "amd64",
+      "binary": "ai-model-provenance",
+      "binarySha256": "029e7de07f93e1eb6c8428e9a98c5a4952a1ec9b03692034ab3e05beabff4f97",
+      "binarySizeBytes": 7912416,
+      "fileHeader": "Mach-O 64-bit executable x86_64",
+      "archive": "ai-model-provenance_0.1.0-rc.1_darwin_amd64.tar.gz",
+      "sha256": "dfb9d7df4483142bc78f099ff7f269903ad011dcd72fb1729aa50104f6fb1957",
+      "sizeBytes": 3108089,
+      "runtimeSmokeTest": "NOT_RUN (cross-compiled binary verified via file header; runtime requires darwin/amd64 host)"
+    },
+    {
+      "os": "linux",
+      "arch": "amd64",
+      "binary": "ai-model-provenance",
+      "binarySha256": "881db1daaedfeb0a4d5da78704cea69cd611d9b31606b3c42a01743cee868d4f",
+      "binarySizeBytes": 7774368,
+      "fileHeader": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=fOZuaDdhLp4CfvzY8R91/u1REMHDjqLwgTEQaW40P/T9v_ZoUAW7UAgPrAYxL6/ZRxaTbRbGxKi9ppQhzLY, BuildID[sha1]=06399dcf7de9232ecc9c59d78b0f68d7e6168dc8, stripped",
+      "archive": "ai-model-provenance_0.1.0-rc.1_linux_amd64.tar.gz",
+      "sha256": "34cabc6cbace62ace8167628ddcf73bdc8f452e33da4955af1daa1c6c636b433",
+      "sizeBytes": 3074032,
+      "runtimeSmokeTest": "NOT_RUN (cross-compiled binary verified via file header; runtime requires linux/amd64 host)"
+    },
+    {
+      "os": "linux",
+      "arch": "arm64",
+      "binary": "ai-model-provenance",
+      "binarySha256": "1ba054befb02002b9287f45467616af98ba5170daa73ff968c67bdc2a74be416",
+      "binarySizeBytes": 7274656,
+      "fileHeader": "ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, Go BuildID=KZpQqVTH3oi9_vWlmYYd/VIzly-k0Wbs45UouoW4r/Erj2wnEQ6mw6rM0wZaYo/nicgXUPy3ySw9GJcCDxI, BuildID[sha1]=0ab0632de073bc89ccd678228f83033130b1210e, stripped",
+      "archive": "ai-model-provenance_0.1.0-rc.1_linux_arm64.tar.gz",
+      "sha256": "1b47746bc1b6bc845fc94124dbf62a4db28858a2161a1ffebd1d9ab1a2cd28ca",
+      "sizeBytes": 2780392,
+      "runtimeSmokeTest": "NOT_RUN (cross-compiled binary verified via file header; runtime requires linux/arm64 host)"
+    },
+    {
+      "os": "windows",
+      "arch": "amd64",
+      "binary": "ai-model-provenance.exe",
+      "binarySha256": "39bb312571a481ed2185f6ed13f2195da43bfadacf99df818871919f8dba93ae",
+      "binarySizeBytes": 7966208,
+      "fileHeader": "PE32+ executable (console) x86-64, for MS Windows",
+      "archive": "ai-model-provenance_0.1.0-rc.1_windows_amd64.zip",
+      "sha256": "d795e49850d9346ba66094bcad6270805ee3c54193fd04760f83037699fe8e50",
+      "sizeBytes": 3144408,
+      "runtimeSmokeTest": "NOT_RUN (cross-compiled binary verified via file header; runtime requires windows/amd64 host)"
+    }
+  ]
+}

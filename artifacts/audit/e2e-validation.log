@@ -1,0 +1,100 @@
+=== STEP 1: Build binary ===
+ai-model-provenance-gate version 0.1.0 (commit=dev, date=1970-01-01T00:00:00Z, go=go1.27.3, platform=darwin/arm64, schema=ai-model-provenance-gate.report/v1)
+=== STEP 2: Create clean temporary workspace ===
+Workspace: /var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK
+=== STEP 3: Generate test keys ===
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:56d58ca5f3583fc668af79d2fe142275f470b5d8210d1625ba7b07e874c55220 PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/model-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/model-signer.pub
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:8fe3b33c1bc33ba85b99bb92965febb69249c2178f6475ecc33e5bd09756b55c PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/eval-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/eval-signer.pub
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:91622d5534cb2161650343b01365ec1dfb4cd86e4148c63e91fa538bc240046d PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/release-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/release-signer.pub
+COMMAND=keygen STATUS=PASS FINGERPRINT=sha256:b9d6f3ec06a99eaa60a8c55bfa22fc7862b8a68a8948e5afd234feb950ceeb9a PRIVATE_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/rogue-signer.key PUBLIC_KEY=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/keys/rogue-signer.pub
+=== STEP 4: Create realistic Safetensors + tokenizer + config + LoRA bundle ===
+total 64
+drwxr-xr-x@ 10 enes  staff  320 Oct 30 23:58 .
+drwx------@  4 enes  staff  128 Oct 30 23:58 ..
+-rw-r--r--@  1 enes  staff  217 Oct 30 23:58 adapter_config.json
+-rw-r--r--@  1 enes  staff  150 Oct 30 23:58 adapter_model.safetensors
+-rw-r--r--@  1 enes  staff   69 Oct 30 23:58 chat_template.jinja
+-rw-r--r--@  1 enes  staff  235 Oct 30 23:58 config.json
+-rw-r--r--@  1 enes  staff  166 Oct 30 23:58 model.safetensors
+-rw-r--r--@  1 enes  staff   39 Oct 30 23:58 special_tokens_map.json
+-rw-r--r--@  1 enes  staff   82 Oct 30 23:58 tokenizer.json
+-rw-r--r--@  1 enes  staff   70 Oct 30 23:58 tokenizer_config.json
+=== STEP 5: Run inspect and record bundle_id ===
+COMMAND=inspect GATE_STATUS=PASS BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 FILES=8 MANIFEST=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-inspect/bundle-manifest.json JSON=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-inspect/inspect-report.json MARKDOWN=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-inspect/inspect-report.md
+Recorded BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34
+=== STEP 6: Run bom generate (CycloneDX 1.7) ===
+COMMAND=bom-generate STATUS=PASS SPEC=1.7 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 BOM_DIGEST=sha256:ffa9d28dd1bb93f062afe501bd7308465221c952edac02e4b83b6fb352ef556c OUTPUT=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-bom/bom.cdx.json
+=== STEP 7: Validate BOM against official CycloneDX 1.7 schema ===
+COMMAND=bom-validate STATUS=PASS BOM=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-bom/bom.cdx.json
+=== STEP 8: Sign model bundle with OMS v1.0 ===
+COMMAND=oms-sign STATUS=PASS BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 KEY_FP=sha256:56d58ca5f3583fc668af79d2fe142275f470b5d8210d1625ba7b07e874c55220 OUTPUT=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/sigs/model.sig
+=== STEP 9: Verify OMS signature ===
+COMMAND=oms-verify STATUS=VERIFIED BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 SIGNER_FP=sha256:56d58ca5f3583fc668af79d2fe142275f470b5d8210d1625ba7b07e874c55220 FILES=8
+=== STEP 10: Create llm-release-gate report bound to bundle_id ===
+=== STEP 11: Sign/bind evaluation evidence ===
+COMMAND=evidence-bind-eval STATUS=PASS BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 SIGNER_FP=sha256:8fe3b33c1bc33ba85b99bb92965febb69249c2178f6475ecc33e5bd09756b55c OUTPUT=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/eval/eval-attestation.dsse.json
+=== STEP 12 & 13: Run gate evaluate in strict mode and produce signed release qualification attestation ===
+COMMAND=gate-evaluate GATE_STATUS=PASS EXIT_CODE=0 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 BOM_DIGEST=sha256:e22cd4fac213a3bffba965538ef894f4daf82ee7354930464c22efac96598070 JSON=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-gate/gate-report.json MARKDOWN=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-gate/gate-report.md
+  [INFO/bundle] BUNDLE_IDENTITY_DETERMINISTIC: computed deterministic model bundle identity sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (8 files, 1028 bytes)
+  [WARNING/lora] LORA_BASE_MODEL_DECLARED_UNVERIFIED: base_model_name_or_path="meta-llama/Llama-3-8B" (revision="043235d") is declared in adapter_config.json without cryptographic verification of base model weights
+  [INFO/bom] CYCLONEDX_BOM_VALIDATED: validated CycloneDX 1.7 AI/ML-BOM (sha256:e22cd4fac213a3bffba965538ef894f4daf82ee7354930464c22efac96598070) with 1:1 file inventory correspondence
+  [INFO/signing] OMS_SIGNATURE_VERIFIED: verified OMS signature (https://model_signing/signature/v1.0) by trusted signer "model-signer-1" (sha256:56d58ca5f3583fc668af79d2fe142275f470b5d8210d1625ba7b07e874c55220)
+  [INFO/evaluation] EVALUATION_QUALIFIED: evaluation PASS verified (runId=run-audit-e2e-001, binding=MATCHED, mode=NATIVE_CI_EVALUATOR, trust=VERIFIED_TRUSTED)
+  [INFO/deployment] RUNTIME_IMAGE_IMMUTABLE: verified immutable runtime image digest "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+-rw-------@ 1 enes  staff  5871 Oct 30 23:58 /var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-gate/attestation.json
+=== STEP 14: Run release verify on approved deployment composition ===
+COMMAND=release-verify GATE_STATUS=PASS EXIT_CODE=0 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 COMPOSITION_ID=sha256:0999344f9d8009670847d4c26db2439c11208c6f62a419dfd5f10046f1961f81 JSON=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-verify-pass/verify-report.json MARKDOWN=/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/out-verify-pass/verify-report.md
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (8 files, 1028 bytes)
+  [INFO/attestation] RELEASE_ATTESTATION_VERIFIED: verified signed release qualification attestation (sha256:91622d5534cb2161650343b01365ec1dfb4cd86e4148c63e91fa538bc240046d) matching bundle sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34
+  [INFO/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED: deployment descriptor model_bundle_id matches live bundle
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+=== STEP 15: Tamper with tokenizer.json and confirm release verify FAILS (exit 1) ===
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:b05eb9a55bc79d76d0c71fb9ab54fb46d93e13859632201e82c22d0814d9535a COMPOSITION_ID=sha256:0999344f9d8009670847d4c26db2439c11208c6f62a419dfd5f10046f1961f81
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:b05eb9a55bc79d76d0c71fb9ab54fb46d93e13859632201e82c22d0814d9535a (8 files, 1027 bytes)
+  [ERROR/attestation] DEPLOYMENT_ARTIFACT_TAMPERED: inspected model bundle identity sha256:b05eb9a55bc79d76d0c71fb9ab54fb46d93e13859632201e82c22d0814d9535a does not match attested release subject sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (artifact modified or substituted)
+  [ERROR/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MISMATCH: deployment descriptor model_bundle_id sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 does not match live bundle sha256:b05eb9a55bc79d76d0c71fb9ab54fb46d93e13859632201e82c22d0814d9535a
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+  -> Exit code: 1 (expected 1)
+=== STEP 16: Tamper with model.safetensors and confirm release verify FAILS (exit 1) ===
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:e8ee42cd36f082631c9866ea47c329214736f014978d2a34afbd5c0d5845dbc2 COMPOSITION_ID=sha256:0999344f9d8009670847d4c26db2439c11208c6f62a419dfd5f10046f1961f81
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:e8ee42cd36f082631c9866ea47c329214736f014978d2a34afbd5c0d5845dbc2 (8 files, 1028 bytes)
+  [ERROR/attestation] DEPLOYMENT_ARTIFACT_TAMPERED: inspected model bundle identity sha256:e8ee42cd36f082631c9866ea47c329214736f014978d2a34afbd5c0d5845dbc2 does not match attested release subject sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (artifact modified or substituted)
+  [ERROR/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MISMATCH: deployment descriptor model_bundle_id sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 does not match live bundle sha256:e8ee42cd36f082631c9866ea47c329214736f014978d2a34afbd5c0d5845dbc2
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+  -> Exit code: 1 (expected 1)
+=== STEP 17: Tamper with adapter_model.safetensors and confirm release verify FAILS (exit 1) ===
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:79961543ceab437e4466f3706537f97c048fefef2eadabbdf84ac232470c23fa COMPOSITION_ID=sha256:0999344f9d8009670847d4c26db2439c11208c6f62a419dfd5f10046f1961f81
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:79961543ceab437e4466f3706537f97c048fefef2eadabbdf84ac232470c23fa (8 files, 1028 bytes)
+  [ERROR/attestation] DEPLOYMENT_ARTIFACT_TAMPERED: inspected model bundle identity sha256:79961543ceab437e4466f3706537f97c048fefef2eadabbdf84ac232470c23fa does not match attested release subject sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (artifact modified or substituted)
+  [ERROR/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MISMATCH: deployment descriptor model_bundle_id sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 does not match live bundle sha256:79961543ceab437e4466f3706537f97c048fefef2eadabbdf84ac232470c23fa
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+  -> Exit code: 1 (expected 1)
+=== STEP 18: Tamper with serving-config.yaml and confirm release verify FAILS (exit 1) ===
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 COMPOSITION_ID=sha256:0999344f9d8009670847d4c26db2439c11208c6f62a419dfd5f10046f1961f81
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (8 files, 1028 bytes)
+  [INFO/attestation] RELEASE_ATTESTATION_VERIFIED: verified signed release qualification attestation (sha256:91622d5534cb2161650343b01365ec1dfb4cd86e4148c63e91fa538bc240046d) matching bundle sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34
+  [INFO/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED: deployment descriptor model_bundle_id matches live bundle
+  [INFO/deployment] DEPLOYMENT_RUNTIME_IMAGE_VERIFIED: verified deployment runtime image "ghcr.io/vllm/vllm-openai@sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  [ERROR/deployment] DEPLOYMENT_SERVING_CONFIG_MODIFIED: serving configuration "/var/folders/xw/4h1nnrrn22j_8psqrt4fx3xm0000gn/T/tmp.REvSeSnLPK/serving-config.yaml" digest sha256:d7fa74bc17ecbbbdae13a500bff96dcea94db856b72b7283b57e5f238f5b377a does not match expected sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+  -> Exit code: 1 (expected 1)
+=== STEP 19: Replace runtime image digest with mutable tag and confirm release verify FAILS (exit 1) ===
+COMMAND=release-verify GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 COMPOSITION_ID=sha256:c2e5a5da8c6eac0c22876ff0baf025fea61edb497f6a2d8878c59ec5086b2d5a
+  [INFO/bundle] DEPLOYMENT_BUNDLE_INSPECTED: re-computed live model bundle identity sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (8 files, 1028 bytes)
+  [INFO/attestation] RELEASE_ATTESTATION_VERIFIED: verified signed release qualification attestation (sha256:91622d5534cb2161650343b01365ec1dfb4cd86e4148c63e91fa538bc240046d) matching bundle sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34
+  [INFO/deployment] DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED: deployment descriptor model_bundle_id matches live bundle
+  [ERROR/deployment] DEPLOYMENT_RUNTIME_IMAGE_MUTABLE: deployment runtime_image "ghcr.io/vllm/vllm-openai:latest" uses a mutable tag without an immutable @sha256:<64-hex> digest
+  [INFO/deployment] DEPLOYMENT_SERVING_CONFIG_VERIFIED: verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675
+  -> Exit code: 1 (expected 1)
+=== STEP 20: Substitute evaluation report for another bundle and confirm gate evaluate FAILS (exit 1) ===
+COMMAND=gate-evaluate GATE_STATUS=FAIL EXIT_CODE=1 BUNDLE_ID=sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 BOM_DIGEST=sha256:e22cd4fac213a3bffba965538ef894f4daf82ee7354930464c22efac96598070
+  [INFO/bundle] BUNDLE_IDENTITY_DETERMINISTIC: computed deterministic model bundle identity sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34 (8 files, 1028 bytes)
+  [WARNING/lora] LORA_BASE_MODEL_DECLARED_UNVERIFIED: base_model_name_or_path="meta-llama/Llama-3-8B" (revision="043235d") is declared in adapter_config.json without cryptographic verification of base model weights
+  [INFO/bom] CYCLONEDX_BOM_VALIDATED: validated CycloneDX 1.7 AI/ML-BOM (sha256:e22cd4fac213a3bffba965538ef894f4daf82ee7354930464c22efac96598070) with 1:1 file inventory correspondence
+  [INFO/signing] OMS_SIGNATURE_VERIFIED: verified OMS signature (https://model_signing/signature/v1.0) by trusted signer "model-signer-1" (sha256:56d58ca5f3583fc668af79d2fe142275f470b5d8210d1625ba7b07e874c55220)
+  [ERROR/evaluation] EVALUATION_ARTIFACT_MISMATCH: evaluation report is bound to model_bundle_id "sha256:9999999999999999999999999999999999999999999999999999999999999999" (attested=""), which does not match inspected bundle "sha256:2771cde452ecde86a385f0c6e5e34c61283413a4144ad0f3b8db68a684f2ea34"
+  -> Exit code: 1 (expected 1)
+=== ALL 20 INDEPENDENT E2E VALIDATION STEPS PASSED ===

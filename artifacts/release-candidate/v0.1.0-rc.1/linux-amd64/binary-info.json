@@ -1,0 +1,12 @@
+{
+  "os": "linux",
+  "arch": "amd64",
+  "binaryName": "ai-model-provenance",
+  "binarySha256": "881db1daaedfeb0a4d5da78704cea69cd611d9b31606b3c42a01743cee868d4f",
+  "binarySizeBytes": 7774368,
+  "fileHeader": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=fOZuaDdhLp4CfvzY8R91/u1REMHDjqLwgTEQaW40P/T9v_ZoUAW7UAgPrAYxL6/ZRxaTbRbGxKi9ppQhzLY, BuildID[sha1]=06399dcf7de9232ecc9c59d78b0f68d7e6168dc8, stripped",
+  "archiveName": "ai-model-provenance_0.1.0-rc.1_linux_amd64.tar.gz",
+  "archiveSha256": "34cabc6cbace62ace8167628ddcf73bdc8f452e33da4955af1daa1c6c636b433",
+  "archiveSizeBytes": 3074032,
+  "runtimeSmokeTest": "NOT_RUN (cross-compiled binary verified via file header; runtime requires linux/amd64 host)"
+}

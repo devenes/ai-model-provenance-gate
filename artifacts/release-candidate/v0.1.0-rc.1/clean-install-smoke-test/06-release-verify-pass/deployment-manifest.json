@@ -1,0 +1,177 @@
+{
+  "gate_status": "PASS",
+  "exit_code": 0,
+  "bundle_id": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+  "composition_id": "sha256:928cfc44decf9e6d0b63e1c8bda069aed0030b7601a173495940008514f3df6a",
+  "attested_bundle_id": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+  "descriptor_bundle_id": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+  "runtime_image": "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777",
+  "runtime_image_immutable": true,
+  "expected_serving_config_digest": "sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675",
+  "observed_serving_config_digest": "sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675",
+  "active_adapters": [
+    "support-lora-v2"
+  ],
+  "qualification_verification": {
+    "status": "VERIFIED",
+    "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/05-gate-pass/attestation.json",
+    "attestation_digest": "sha256:5b7ad472598459972ff17765bf7197881cb36b75f1d98478f419cd2295829976",
+    "signer_id": "release-signer-1",
+    "signer_key_id": "release-signer-1",
+    "signer_fingerprint": "sha256:ef385f7bc28ac44e805a621e0da4a753b65475ad40d1b64473ac280c2a0c07c1",
+    "subject_bundle_id": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+    "predicate": {
+      "schema_version": "release-qualification/v1",
+      "timestamp": "2026-10-31T05:42:27Z",
+      "tool": {
+        "name": "ai-model-provenance-gate",
+        "version": "0.1.0-rc.1",
+        "gitCommit": "eafb5e9",
+        "gitTreeState": "clean",
+        "buildDate": "2026-10-31T05:36:29Z",
+        "buildType": "release-candidate",
+        "goVersion": "go1.27.3",
+        "platform": "darwin/arm64",
+        "schemaVersion": "ai-model-provenance-gate.report/v1"
+      },
+      "bundle": {
+        "bundle_id": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+        "manifest_digest": "sha256:27fe73020c39f523e851b738fd7888a1f411935240642b2ce4919343e10b554f",
+        "file_count": 8,
+        "total_bytes": 1104,
+        "primary_format": "huggingface-safetensors+peft-lora",
+        "lora_status": "DECLARED_UNVERIFIED"
+      },
+      "bom": {
+        "digest": "sha256:0905e056c13a1df219d5d4decd5283ac3897ef60df618f9cf57d085b135e8a32",
+        "spec_version": "1.7"
+      },
+      "oms_verification": {
+        "status": "VERIFIED",
+        "predicate_type": "https://model_signing/signature/v1.0",
+        "signer_id": "model-signer-1",
+        "signer_key_id": "model-signer-1",
+        "signer_fingerprint": "sha256:6d7c55a006110aa89381a96fa9bb33090db535aa13a1ba6d14f96cc2bb793854",
+        "signature_digest": "sha256:01c6e8a3074036e2a2031f5a74ce72c252b32d670ac611ddcef8ab9393ff5cef"
+      },
+      "evaluation": {
+        "present": true,
+        "reported_status": "PASS",
+        "effective_status": "PASS",
+        "evidence_quality": "COMPLETE",
+        "binding_status": "MATCHED",
+        "trust_status": "VERIFIED_TRUSTED",
+        "report_digest": "sha256:3d39c8820b4354c5b2660d3a5db189f36b60d1236d254301face8dfecba03449",
+        "attestation_digest": "sha256:d435fe46f4f401f743550c6370306ae0c21920f16c67e65ec49a08d1b5716a19",
+        "suite_digest": "sha256:aacc5f5bd47e335484803969a97f415f06e00a6c0681c95a056918f8a22e53fb",
+        "dataset_digest": "sha256:c83d9a10096a9d2e4bfaaebb8b8e298f724a185c75c4887a81bfdcb4ecd5323a",
+        "run_id": "run-rc1-smoke-001",
+        "signer_fingerprint": "sha256:44b2f69a903bedb7ea975b779b9cc7aea8b8f92323397626168f5b4f051fb785"
+      },
+      "scanner": {
+        "status": "NOT_RUN"
+      },
+      "upstream_provenance": {
+        "status": "NOT_RUN",
+        "slsa_claim_note": "Release qualification attestation only; does NOT claim SLSA build provenance generation."
+      },
+      "runtime": {
+        "runtime_image": "ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777",
+        "serving_config_digest": "sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675"
+      },
+      "policy": {
+        "schema_version": "v1",
+        "name": "rc1-strict-policy",
+        "digest": "sha256:9b24240cc0267d6915786785ebc02cac0afbe374fe2e8e8a8406b4d75e2ce95b",
+        "decision_mode": "strict"
+      },
+      "decision": {
+        "gate_status": "PASS",
+        "exit_code": 0,
+        "reasons": [
+          {
+            "code": "BUNDLE_IDENTITY_DETERMINISTIC",
+            "category": "bundle",
+            "severity": "info",
+            "status": "PASS",
+            "message": "computed deterministic model bundle identity sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb (8 files, 1104 bytes)"
+          },
+          {
+            "code": "LORA_BASE_MODEL_DECLARED_UNVERIFIED",
+            "category": "lora",
+            "severity": "warning",
+            "status": "PASS",
+            "message": "base_model_name_or_path=\"meta-llama/Llama-3-8B\" (revision=\"043235d6088ecd3dd5fb5ca3592b6913fd516027\") is declared in adapter_config.json without cryptographic verification of base model weights"
+          },
+          {
+            "code": "CYCLONEDX_BOM_VALIDATED",
+            "category": "bom",
+            "severity": "info",
+            "status": "PASS",
+            "message": "validated CycloneDX 1.7 AI/ML-BOM (sha256:0905e056c13a1df219d5d4decd5283ac3897ef60df618f9cf57d085b135e8a32) with 1:1 file inventory correspondence"
+          },
+          {
+            "code": "OMS_SIGNATURE_VERIFIED",
+            "category": "signing",
+            "severity": "info",
+            "status": "PASS",
+            "message": "verified OMS signature (https://model_signing/signature/v1.0) by trusted signer \"model-signer-1\" (sha256:6d7c55a006110aa89381a96fa9bb33090db535aa13a1ba6d14f96cc2bb793854)"
+          },
+          {
+            "code": "EVALUATION_QUALIFIED",
+            "category": "evaluation",
+            "severity": "info",
+            "status": "PASS",
+            "message": "evaluation PASS verified (runId=run-rc1-smoke-001, binding=MATCHED, mode=NATIVE_CI_EVALUATOR, trust=VERIFIED_TRUSTED)"
+          },
+          {
+            "code": "RUNTIME_IMAGE_IMMUTABLE",
+            "category": "deployment",
+            "severity": "info",
+            "status": "PASS",
+            "message": "verified immutable runtime image digest \"ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777\""
+          }
+        ]
+      }
+    },
+    "reason": "verified signed release qualification attestation for bundle sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb"
+  },
+  "reasons": [
+    {
+      "code": "DEPLOYMENT_BUNDLE_INSPECTED",
+      "category": "bundle",
+      "severity": "info",
+      "status": "PASS",
+      "message": "re-computed live model bundle identity sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb (8 files, 1104 bytes)"
+    },
+    {
+      "code": "RELEASE_ATTESTATION_VERIFIED",
+      "category": "attestation",
+      "severity": "info",
+      "status": "PASS",
+      "message": "verified signed release qualification attestation (sha256:ef385f7bc28ac44e805a621e0da4a753b65475ad40d1b64473ac280c2a0c07c1) matching bundle sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb"
+    },
+    {
+      "code": "DEPLOYMENT_DESCRIPTOR_BUNDLE_MATCHED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "deployment descriptor model_bundle_id matches live bundle"
+    },
+    {
+      "code": "DEPLOYMENT_RUNTIME_IMAGE_VERIFIED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "verified deployment runtime image \"ghcr.io/vllm/vllm-openai@sha256:7777777777777777777777777777777777777777777777777777777777777777\""
+    },
+    {
+      "code": "DEPLOYMENT_SERVING_CONFIG_VERIFIED",
+      "category": "deployment",
+      "severity": "info",
+      "status": "PASS",
+      "message": "verified serving configuration digest sha256:51ceb1fe36b786d1d57dcd52c22ca444ae0e81adab31243be4ee5b80a8fb0675"
+    }
+  ],
+  "scope_limitation": "Verifies local deployment descriptor and local model bundle contents offline; does NOT query or verify live Kubernetes workloads or cloud control planes."
+}

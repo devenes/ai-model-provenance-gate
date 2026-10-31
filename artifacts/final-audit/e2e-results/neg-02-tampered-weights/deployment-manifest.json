@@ -1,0 +1,72 @@
+{
+  "gate_status": "FAIL",
+  "exit_code": 1,
+  "bundle_id": "",
+  "runtime_image_immutable": false,
+  "qualification_verification": {
+    "status": "",
+    "attestation_path": "",
+    "attestation_digest": "",
+    "predicate": {
+      "schema_version": "",
+      "timestamp": "",
+      "tool": {
+        "name": "",
+        "version": "",
+        "gitCommit": "",
+        "gitTreeState": "",
+        "buildDate": "",
+        "buildType": "",
+        "goVersion": "",
+        "platform": "",
+        "schemaVersion": ""
+      },
+      "bundle": {
+        "bundle_id": "",
+        "manifest_digest": "",
+        "file_count": 0,
+        "total_bytes": 0,
+        "primary_format": "",
+        "lora_status": ""
+      },
+      "bom": {
+        "digest": "",
+        "spec_version": ""
+      },
+      "oms_verification": {
+        "status": ""
+      },
+      "evaluation": {
+        "present": false
+      },
+      "scanner": {
+        "status": ""
+      },
+      "upstream_provenance": {
+        "status": "",
+        "slsa_claim_note": ""
+      },
+      "policy": {
+        "schema_version": "",
+        "digest": "",
+        "decision_mode": ""
+      },
+      "decision": {
+        "gate_status": "",
+        "exit_code": 0,
+        "reasons": null
+      }
+    },
+    "reason": ""
+  },
+  "reasons": [
+    {
+      "code": "DEPLOYMENT_BUNDLE_INSPECTION_FAILED",
+      "category": "bundle",
+      "severity": "error",
+      "status": "FAIL",
+      "message": "invalid safetensors tensor data_offsets: tensors in \"model.safetensors\" end at offset 32, but data buffer size is 33 (trailing/unaccounted bytes)"
+    }
+  ],
+  "scope_limitation": "Verifies local deployment descriptor and local model bundle contents offline; does NOT query or verify live Kubernetes workloads or cloud control planes."
+}

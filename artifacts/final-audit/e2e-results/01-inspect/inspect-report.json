@@ -1,0 +1,270 @@
+{
+  "schema_version": "ai-model-provenance-gate.report/v1",
+  "command": "inspect",
+  "timestamp": "2026-10-30T23:17:03Z",
+  "tool": {
+    "name": "ai-model-provenance-gate",
+    "version": "0.1.0",
+    "gitCommit": "eafb5e9",
+    "gitTreeState": "clean",
+    "buildDate": "2026-10-30T23:14:15Z",
+    "buildType": "local",
+    "goVersion": "go1.27.3",
+    "platform": "darwin/arm64",
+    "schemaVersion": "ai-model-provenance-gate.report/v1"
+  },
+  "gate_status": "PASS",
+  "exit_code": 0,
+  "bundle_id": "sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a",
+  "manifest": {
+    "schema_version": "bundle-identity/v1",
+    "bundle_id": "sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a",
+    "manifest_digest": "sha256:9a6f91acaeafd8b4a3dd84268f3fd1b00b27961a6241e6165a759e6ca2ce3bf5",
+    "file_count": 8,
+    "total_bytes": 1194,
+    "files": [
+      {
+        "path": "adapter_config.json",
+        "size": 262,
+        "sha256": "sha256:6c4f7b8ea6fc856042d45710cee3e0aba8bd15177a522a4697861c849f29632c",
+        "role": "lora_config",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "adapter_model.safetensors",
+        "size": 150,
+        "sha256": "sha256:c585aa0986f7f5160ddb9a06dc326ea9d14a0db081968d0d98d3f6ce1334f32a",
+        "role": "lora_weights",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "chat_template.jinja",
+        "size": 86,
+        "sha256": "sha256:a391b8b64fee310563afc6c4a493bd8d4ba31356eaa6fa62e1883f66049dce4b",
+        "role": "chat_template",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "config.json",
+        "size": 323,
+        "sha256": "sha256:d6b1d5424f6f342c10c03d4e7c786721f07fc329cbe4736860d631e42f612b5c",
+        "role": "model_config",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "model.safetensors",
+        "size": 166,
+        "sha256": "sha256:260f32873456c0f6fcdb904d700f00e364e63b7768d6a8a8b7ac9de6ebaba7cb",
+        "role": "model_weights",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "special_tokens_map.json",
+        "size": 39,
+        "sha256": "sha256:eca4fc6cd74e0f8e3d429064f09c1462e11bcf5e3f9a0a5dff8a3ccdf5ef7eca",
+        "role": "special_tokens",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "tokenizer.json",
+        "size": 95,
+        "sha256": "sha256:d611fe64b1902a3eb4fa0b64b1ea447b4e20711238587b66def7dc15f31b1839",
+        "role": "tokenizer_vocab",
+        "metadata_provenance": "observed"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "size": 73,
+        "sha256": "sha256:9a47466be4cb43e20cf62aaa04bad6a732cea00f09e3be64c68091507a480639",
+        "role": "tokenizer_config",
+        "metadata_provenance": "observed"
+      }
+    ],
+    "format_summary": {
+      "primary_format": "huggingface-safetensors+peft-lora",
+      "has_model_config": true,
+      "has_safetensors_weights": true,
+      "is_sharded": false,
+      "shard_count": 0,
+      "total_tensors": 2,
+      "has_tokenizer": true,
+      "has_chat_template": true,
+      "has_lora_adapter": true,
+      "has_quantization": true,
+      "unknown_file_count": 0
+    },
+    "model_config": {
+      "path": "config.json",
+      "model_type": "llama",
+      "architectures": [
+        "LlamaForCausalLM"
+      ],
+      "torch_dtype": "bfloat16",
+      "vocab_size": 32000,
+      "hidden_size": 4096,
+      "num_hidden_layers": 32,
+      "num_attention_heads": 32,
+      "declared_license": "apache-2.0",
+      "has_auto_map": false,
+      "quantization": {
+        "quant_method": "awq",
+        "bits": 4,
+        "group_size": 128,
+        "source": "config.json#quantization_config"
+      }
+    },
+    "tokenizer": {
+      "config_path": "tokenizer_config.json",
+      "tokenizer_json_path": "tokenizer.json",
+      "special_tokens_path": "special_tokens_map.json",
+      "chat_template_path": "chat_template.jinja",
+      "tokenizer_class": "PreTrainedTokenizerFast",
+      "model_max_length": 8192,
+      "has_inline_chat_template": false
+    },
+    "quantization": {
+      "quant_method": "awq",
+      "bits": 4,
+      "group_size": 128,
+      "source": "config.json#quantization_config"
+    },
+    "safetensors_files": [
+      {
+        "path": "adapter_model.safetensors",
+        "file_size": 150,
+        "header_bytes": 126,
+        "data_bytes": 16,
+        "tensor_count": 1,
+        "dtypes": [
+          "F16"
+        ],
+        "metadata": {
+          "format": "pt"
+        },
+        "tensors": [
+          {
+            "name": "base_model.model.layers.0.lora_A.weight",
+            "dtype": "F16",
+            "shape": [
+              2,
+              4
+            ],
+            "data_offsets": [
+              0,
+              16
+            ],
+            "byte_length": 16
+          }
+        ]
+      },
+      {
+        "path": "model.safetensors",
+        "file_size": 166,
+        "header_bytes": 126,
+        "data_bytes": 32,
+        "tensor_count": 1,
+        "dtypes": [
+          "BF16"
+        ],
+        "metadata": {
+          "format": "pt"
+        },
+        "tensors": [
+          {
+            "name": "model.layers.0.self_attn.q_proj.weight",
+            "dtype": "BF16",
+            "shape": [
+              4,
+              4
+            ],
+            "data_offsets": [
+              0,
+              32
+            ],
+            "byte_length": 32
+          }
+        ]
+      }
+    ],
+    "lora_relationship": {
+      "is_adapter": true,
+      "config_path": "adapter_config.json",
+      "weight_paths": [
+        "adapter_model.safetensors"
+      ],
+      "peft_type": "LORA",
+      "task_type": "CAUSAL_LM",
+      "base_model_name_or_path": "meta-llama/Llama-3-8B",
+      "revision": "043235d6088ecd3dd5fb5ca3592b6913fd516027",
+      "r": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "verification_status": "DECLARED_UNVERIFIED",
+      "verification_notes": "base_model_name_or_path=\"meta-llama/Llama-3-8B\" (revision=\"043235d6088ecd3dd5fb5ca3592b6913fd516027\") is declared in adapter_config.json without cryptographic verification of base model weights"
+    },
+    "security_flags": {
+      "contains_symlinks": false,
+      "contains_unsafe_pickle": false,
+      "contains_remote_code_hooks": false
+    },
+    "metadata_provenance": [
+      {
+        "field": "bundle_id",
+        "source": "observed",
+        "origin": "rfc8785-jcs(bundle-identity/v1)"
+      },
+      {
+        "field": "lora_relationship.base_model_name_or_path",
+        "source": "declared_unverified",
+        "origin": "adapter_config.json#base_model_name_or_path"
+      },
+      {
+        "field": "model_config",
+        "source": "observed",
+        "origin": "config.json"
+      },
+      {
+        "field": "model_config.declared_license",
+        "source": "declared_unverified",
+        "origin": "config.json#license"
+      }
+    ]
+  },
+  "guarantees": {
+    "artifact_integrity": "VERIFIED (sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a over 8 regular files)",
+    "artifact_authenticity": "NOT_EVALUATED (SHA-256 digest does not establish origin or authenticity)",
+    "signer_trust": "NOT_EVALUATED",
+    "artifact_provenance": "LoRA status=DECLARED_UNVERIFIED",
+    "security_scan_evidence": "STATIC_HEADER_ONLY (Safetensors binary headers validated; no behavioral safety implied)",
+    "behavioral_evaluation": "NOT_EVALUATED",
+    "release_qualification": "NOT_EVALUATED",
+    "deployment_identity": "NOT_EVALUATED"
+  },
+  "reasons": [
+    {
+      "code": "BUNDLE_INSPECTED",
+      "category": "bundle",
+      "severity": "info",
+      "status": "PASS",
+      "message": "inspected 8 files (1194 bytes), bundle_id=sha256:5cf4da3cb4001a33d87d0dcd06439061bf9b293ad2bcdcf7fc7ba4411887e61a"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "bundle-manifest.json",
+      "role": "bundle-manifest",
+      "path": "bundle-manifest.json",
+      "sha256": "sha256:9a6f91acaeafd8b4a3dd84268f3fd1b00b27961a6241e6165a759e6ca2ce3bf5"
+    },
+    {
+      "name": "inspect-report.md",
+      "role": "markdown-report",
+      "path": "inspect-report.md",
+      "sha256": "sha256:fc832586f2bdbf3b8799ba55b01c1464faa985f788d3fbd4295150effe343e73"
+    }
+  ]
+}

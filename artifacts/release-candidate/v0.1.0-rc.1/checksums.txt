@@ -1,0 +1,5 @@
+dfb9d7df4483142bc78f099ff7f269903ad011dcd72fb1729aa50104f6fb1957  ai-model-provenance_0.1.0-rc.1_darwin_amd64.tar.gz
+3867f7bc8dd05ee77f92c43e1fb8442068c06aa93e0eaaaec3b8f1e303adb498  ai-model-provenance_0.1.0-rc.1_darwin_arm64.tar.gz
+34cabc6cbace62ace8167628ddcf73bdc8f452e33da4955af1daa1c6c636b433  ai-model-provenance_0.1.0-rc.1_linux_amd64.tar.gz
+1b47746bc1b6bc845fc94124dbf62a4db28858a2161a1ffebd1d9ab1a2cd28ca  ai-model-provenance_0.1.0-rc.1_linux_arm64.tar.gz
+d795e49850d9346ba66094bcad6270805ee3c54193fd04760f83037699fe8e50  ai-model-provenance_0.1.0-rc.1_windows_amd64.zip

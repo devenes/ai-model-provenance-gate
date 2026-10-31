@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "ai-model-provenance-gate.rc-validation-summary/v1",
+  "releaseCandidateVersion": "0.1.0-rc.1",
+  "verificationTimestamp": "2026-10-31T08:43:00+03:00",
+  "verdict": "READY_FOR_RELEASE_CANDIDATE_WITH_LIMITATIONS",
+  "environment": {
+    "os": "darwin",
+    "arch": "arm64",
+    "kernel": "Darwin 25.4.0",
+    "goVersion": "go1.27.3",
+    "golangciLintVersion": "2.11.4",
+    "govulncheckVersion": "v1.1.4",
+    "shellcheckVersion": "0.11.0"
+  },
+  "qualityGate": {
+    "gofmt": "PASS",
+    "goVet": "PASS",
+    "unitTests": "PASS",
+    "raceDetectorTests": "PASS",
+    "golangciLint": "PASS (0 issues)",
+    "govulncheck": "PASS (0 vulnerabilities)",
+    "goModVerify": "PASS (all modules verified)",
+    "shellcheck": "PASS",
+    "makeCheck": "PASS"
+  },
+  "standardsAndSecurityAudit": {
+    "totalFindings": 10,
+    "remediatedAndVerified": 10,
+    "cyclonedxSpecVersion": "1.7 (github.com/CycloneDX/cyclonedx-go v0.12.0 + official JSON Schema Draft-07 validation)",
+    "omsConformanceDefaultSuite": "80/80 PASS (offline)",
+    "omsConformanceVerifySuite": "55/55 PASS (offline)",
+    "omsConformanceTotalOfflineCapable": "87/87 PASS",
+    "omsConformanceLiveOIDCNetwork": "BLOCKED (7/7 require live OIDC identity provider token; wired in .github/workflows/ci.yml workflow_dispatch)",
+    "llmReleaseGateAdapterTests": "13/13 PASS",
+    "filesystemAndFormatSecurityTests": "21/21 PASS"
+  },
+  "releasePackaging": {
+    "version": "0.1.0-rc.1",
+    "gitCommit": "eafb5e9",
+    "targets": [
+      {
+        "platform": "darwin/arm64",
+        "archive": "ai-model-provenance_0.1.0-rc.1_darwin_arm64.tar.gz",
+        "sha256": "3867f7bc8dd05ee77f92c43e1fb8442068c06aa93e0eaaaec3b8f1e303adb498",
+        "buildStatus": "PASS",
+        "runtimeSmokeStatus": "PASS"
+      },
+      {
+        "platform": "darwin/amd64",
+        "archive": "ai-model-provenance_0.1.0-rc.1_darwin_amd64.tar.gz",
+        "sha256": "dfb9d7df4483142bc78f099ff7f269903ad011dcd72fb1729aa50104f6fb1957",
+        "buildStatus": "PASS",
+        "runtimeSmokeStatus": "NOT_RUN (cross-compiled binary verified structurally)"
+      },
+      {
+        "platform": "linux/amd64",
+        "archive": "ai-model-provenance_0.1.0-rc.1_linux_amd64.tar.gz",
+        "sha256": "34cabc6cbace62ace8167628ddcf73bdc8f452e33da4955af1daa1c6c636b433",
+        "buildStatus": "PASS",
+        "runtimeSmokeStatus": "NOT_RUN (cross-compiled binary verified structurally)"
+      },
+      {
+        "platform": "linux/arm64",
+        "archive": "ai-model-provenance_0.1.0-rc.1_linux_arm64.tar.gz",
+        "sha256": "1b47746bc1b6bc845fc94124dbf62a4db28858a2161a1ffebd1d9ab1a2cd28ca",
+        "buildStatus": "PASS",
+        "runtimeSmokeStatus": "NOT_RUN (cross-compiled binary verified structurally)"
+      },
+      {
+        "platform": "windows/amd64",
+        "archive": "ai-model-provenance_0.1.0-rc.1_windows_amd64.zip",
+        "sha256": "d795e49850d9346ba66094bcad6270805ee3c54193fd04760f83037699fe8e50",
+        "buildStatus": "PASS",
+        "runtimeSmokeStatus": "NOT_RUN (cross-compiled binary verified structurally)"
+      }
+    ]
+  },
+  "cleanInstallSmokeAndE2E": {
+    "installedFromArchive": "ai-model-provenance_0.1.0-rc.1_darwin_arm64.tar.gz",
+    "helpInvocationsVerified": "19/19 PASS",
+    "positiveLifecycleSteps": "12/12 PASS",
+    "negativeTamperingScenarios": "10/10 PASS",
+    "testedBundleId": "sha256:2c5f9757efe8c44d095cb3969c166928ccfaefc7cf80fc2b1ef8639505347adb",
+    "testedCompositionId": "sha256:928cfc44decf9e6d0b63e1c8bda069aed0030b7601a173495940008514f3df6a"
+  },
+  "limitations": [
+    "Owner approval of MIT LICENSE file required before public GitHub commit/push (`OWNER_APPROVAL_REQUIRED`).",
+    "Non-host cross-compiled binaries (`darwin/amd64`, `linux/amd64`, `linux/arm64`, `windows/amd64`) are structurally verified (`file`, `tar`/`zip`, `SHA256SUMS`), with runtime execution marked `NOT_RUN` on the local macOS `darwin/arm64` host.",
+    "7 live Sigstore Fulcio/Rekor OIDC network signing conformance tests are marked `BLOCKED` locally and wired to an optional `workflow_dispatch` GitHub Actions job."
+  ]
+}

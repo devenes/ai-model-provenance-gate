@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devenes/ai-model-provenance-gate/schemas/reports/gate-report.schema.json",
+  "title": "AI Model Provenance Gate Report Schema v1",
+  "description": "Versioned machine-readable inspection, release qualification, and deployment verification report.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "command",
+    "timestamp",
+    "tool",
+    "gate_status",
+    "exit_code",
+    "bundle_id",
+    "guarantees",
+    "reasons"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "ai-model-provenance-gate.report/v1"
+    },
+    "command": {
+      "type": "string",
+      "enum": ["inspect", "gate-evaluate", "release-verify"]
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "tool": {
+      "type": "object"
+    },
+    "gate_status": {
+      "type": "string",
+      "enum": ["PASS", "FAIL", "BLOCKED", "NOT_RUN", "ERROR"]
+    },
+    "exit_code": {
+      "type": "integer",
+      "enum": [0, 1, 2, 3, 4]
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "composition_id": {
+      "type": "string"
+    },
+    "manifest": {
+      "type": "object"
+    },
+    "bom_digest": {
+      "type": "string"
+    },
+    "oms": {
+      "type": "object"
+    },
+    "evaluation": {
+      "type": "object"
+    },
+    "scanner": {
+      "type": "object"
+    },
+    "upstream_provenance": {
+      "type": "object"
+    },
+    "release_attestation_digest": {
+      "type": "string"
+    },
+    "deployment": {
+      "type": "object"
+    },
+    "policy": {
+      "type": "object"
+    },
+    "guarantees": {
+      "type": "object",
+      "required": [
+        "artifact_integrity",
+        "artifact_authenticity",
+        "signer_trust",
+        "artifact_provenance",
+        "security_scan_evidence",
+        "behavioral_evaluation",
+        "release_qualification",
+        "deployment_identity"
+      ]
+    },
+    "reasons": {
+      "type": "array"
+    },
+    "artifacts": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": false
+}
