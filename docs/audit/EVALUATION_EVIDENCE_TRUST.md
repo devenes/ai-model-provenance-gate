@@ -1,14 +1,14 @@
 # LLM Release Gate Evaluation Evidence Trust Model (`docs/audit/EVALUATION_EVIDENCE_TRUST.md`)
 
 **Component:** [`internal/evaluation/llmreleasegate/adapter.go`](../../internal/evaluation/llmreleasegate/adapter.go), [`internal/cli/cli.go`](../../internal/cli/cli.go)  
-**Sibling Repository (Read-Only):** `/Users/enes/GitHub/llm-release-gate`  
+**Sibling Repository (Read-Only):** `llm-release-gate`  
 **Evidence Artifact:** [`artifacts/final-audit/evaluation-trust-results.json`](../../artifacts/final-audit/evaluation-trust-results.json)
 
 ---
 
 ## 1. Sibling Repository Inspection Findings
 
-Read-only inspection of `/Users/enes/GitHub/llm-release-gate` (`schemas/report.schema.json`, `internal/report/types.go`, `examples/basic/baselines/approved.json`) confirmed:
+Read-only inspection of `llm-release-gate` (`schemas/report.schema.json`, `internal/report/types.go`, `examples/basic/baselines/approved.json`) confirmed:
 1. `llm-release-gate` emits plain, unsigned JSON reports (`schemaVersion: "llm-release-gate.report/v1"`).
 2. `SubjectIdentity` (`candidate` / `baseline`) provides an extensible `metadata: map[string]string` map (`additionalProperties: {"type": "string"}`), where `candidate.metadata["model_bundle_id"]` can be populated without violating `llm-release-gate`'s strict JSON schema.
 3. Existing baseline fixtures in `llm-release-gate` (such as `examples/basic/baselines/approved.json`) do not contain `model_bundle_id` and are therefore `UNBOUND`.

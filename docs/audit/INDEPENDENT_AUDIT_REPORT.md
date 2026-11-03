@@ -1,7 +1,7 @@
 # Independent Security, Standards Compliance & Interoperability Audit Report (`docs/audit/INDEPENDENT_AUDIT_REPORT.md`)
 
 **Project:** AI Model Provenance Gate (`ai-model-provenance-gate`)  
-**Workspace:** `/Users/enes/GitHub/ai-model-provenance-gate`  
+**Workspace:** `ai-model-provenance-gate`  
 **Audit Date:** `2026-10-31`  
 **Methodology:** Source-code-first verification, official JSON Schema and specification conformance testing, adversarial unit/integration testing, and multi-scenario E2E execution.
 

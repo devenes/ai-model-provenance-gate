@@ -2,7 +2,7 @@
 
 **Generated:** 2026-10-31T00:10:00+03:00  
 **Phase:** Phase 0 — Environment and Baseline Inspection  
-**Workspace:** `/Users/enes/GitHub/ai-model-provenance-gate`
+**Workspace:** `ai-model-provenance-gate`
 
 ---
 
@@ -40,9 +40,9 @@
 
 ---
 
-## 3. Target Repository State (`/Users/enes/GitHub/ai-model-provenance-gate`)
+## 3. Target Repository State (`ai-model-provenance-gate`)
 
-- **Directory Path:** `/Users/enes/GitHub/ai-model-provenance-gate`
+- **Directory Path:** `ai-model-provenance-gate`
 - **Git Status:** Initialized Git repository on branch `main`, tracking `origin/main` (`https://github.com/devenes/ai-model-provenance-gate.git`).
 - **HEAD Commit:** `eafb5e987c8ee0ee8bd622e4a9a5787b43677bd9` (`Initial commit`, `2026-10-30 22:04:19 +0100`).
 - **Existing Tracked Files:** `.gitattributes` (`* text=auto`).
@@ -55,6 +55,6 @@
 
 | Repository | Local Path | Remote URL | Responsibility | Isolation Policy |
 |---|---|---|---|---|
-| `ai-platform-conformance-kit` | `/Users/enes/GitHub/ai-platform-conformance-kit` | `https://github.com/devenes/ai-platform-conformance-kit` | Infrastructure and platform conformance | Strictly Read-Only |
-| `llm-release-gate` | `/Users/enes/GitHub/llm-release-gate` | `https://github.com/devenes/llm-release-gate` | Model behavior, quality, regression, and evaluation | Strictly Read-Only |
-| `ai-model-provenance-gate` | `/Users/enes/GitHub/ai-model-provenance-gate` | `https://github.com/devenes/ai-model-provenance-gate` | Model artifact identity, integrity, provenance, evaluation evidence binding, and release qualification | Active target workspace (local only, no remote push) |
+| `ai-platform-conformance-kit` | `ai-platform-conformance-kit` | `https://github.com/devenes/ai-platform-conformance-kit` | Infrastructure and platform conformance | Strictly Read-Only |
+| `llm-release-gate` | `llm-release-gate` | `https://github.com/devenes/llm-release-gate` | Model behavior, quality, regression, and evaluation | Strictly Read-Only |
+| `ai-model-provenance-gate` | `ai-model-provenance-gate` | `https://github.com/devenes/ai-model-provenance-gate` | Model artifact identity, integrity, provenance, evaluation evidence binding, and release qualification | Active target workspace (local only, no remote push) |

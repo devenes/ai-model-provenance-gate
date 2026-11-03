@@ -201,9 +201,12 @@ func TestCertificateChainValidationAndNegativeCases(t *testing.T) {
 }
 
 func TestVerifyHistoricalAndPositiveCertBundles(t *testing.T) {
-	base := "/Users/enes/.gemini/antigravity/brain/8bc08c95-7b5e-433d-9c76-7eb5fcbe0d10/scratch/model-signing-spec/conformance/test/test-cases/verify"
+	base := os.Getenv("OMS_CONFORMANCE_TEST_CASES_DIR")
+	if base == "" {
+		t.Skip("OMS_CONFORMANCE_TEST_CASES_DIR not set")
+	}
 	if _, err := os.Stat(base); err != nil {
-		t.Skip("scratch conformance fixtures not present")
+		t.Skip("conformance fixtures not present")
 	}
 
 	histBundle, err := os.ReadFile(filepath.Join(base, "historical/historical-v1.1.0-certificate/bundle.sig"))

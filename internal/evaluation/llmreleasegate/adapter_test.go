@@ -389,7 +389,10 @@ func TestEvaluationEvidenceAcceptanceMatrix(t *testing.T) {
 }
 
 func TestReadOnlySiblingLLMReleaseGateFixtureCompatibility(t *testing.T) {
-	siblingFixture := "/Users/enes/GitHub/llm-release-gate/examples/basic/baselines/approved.json"
+	siblingFixture := os.Getenv("LLM_RELEASE_GATE_FIXTURE_PATH")
+	if siblingFixture == "" {
+		siblingFixture = filepath.Join("..", "..", "..", "..", "llm-release-gate", "examples", "basic", "baselines", "approved.json")
+	}
 	if _, err := os.Stat(siblingFixture); errors.Is(err, os.ErrNotExist) {
 		t.Skip("sibling repository fixture not present on this runner")
 	}

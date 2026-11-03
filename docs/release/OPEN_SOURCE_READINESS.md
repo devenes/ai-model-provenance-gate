@@ -7,8 +7,8 @@
 
 ## 1. Repository License Status (`APPROVED_BY_OWNER`)
 
-- **Local Workspace File:** `/Users/enes/GitHub/ai-model-provenance-gate/LICENSE`
-- **License Type:** `MIT License` (`Copyright (c) 2026 Enes Turan`), matching the sibling repository `/Users/enes/GitHub/llm-release-gate/LICENSE`.
+- **Local Workspace File:** `ai-model-provenance-gate/LICENSE`
+- **License Type:** `MIT License` (`Copyright (c) 2026 Enes Turan`), matching the sibling repository `llm-release-gate/LICENSE`.
 - **Governance Status:** **`APPROVED_BY_OWNER`** for public open-source distribution (`v0.1.0`).
 
 ---

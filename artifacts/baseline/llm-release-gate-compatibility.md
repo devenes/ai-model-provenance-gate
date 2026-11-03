@@ -2,23 +2,23 @@
 
 **Generated:** 2026-10-31T00:10:00+03:00  
 **Phase:** Phase 0 — Environment and Baseline Inspection  
-**Inspected Repository:** `/Users/enes/GitHub/llm-release-gate` (Strictly Read-Only)
+**Inspected Repository:** `llm-release-gate` (Strictly Read-Only)
 
 ---
 
 ## 1. Repository State Verification
 
-- **Path:** `/Users/enes/GitHub/llm-release-gate`
+- **Path:** `llm-release-gate`
 - **Module:** `github.com/devenes/llm-release-gate` (`go 1.27.3`)
-- **Report Schema Version:** `"llm-release-gate.report/v1"` (`/Users/enes/GitHub/llm-release-gate/schemas/report.schema.json`)
-- **Candidate Config Schema Version:** `"llm-release-gate/v1"`, `kind: "CandidateConfig"` (`/Users/enes/GitHub/llm-release-gate/schemas/candidate.schema.json`)
+- **Report Schema Version:** `"llm-release-gate.report/v1"` (`llm-release-gate/schemas/report.schema.json`)
+- **Candidate Config Schema Version:** `"llm-release-gate/v1"`, `kind: "CandidateConfig"` (`llm-release-gate/schemas/candidate.schema.json`)
 - **Modification Status:** Untouched (`read-only` isolation maintained).
 
 ---
 
 ## 2. Inspected Schema Structure (`llm-release-gate.report/v1`)
 
-From `/Users/enes/GitHub/llm-release-gate/schemas/report.schema.json` and `/Users/enes/GitHub/llm-release-gate/internal/result/result.go`:
+From `llm-release-gate/schemas/report.schema.json` and `llm-release-gate/internal/result/result.go`:
 
 ### Top-Level Required Fields
 - `schemaVersion`: Must equal `"llm-release-gate.report/v1"`
@@ -46,7 +46,7 @@ From `/Users/enes/GitHub/llm-release-gate/schemas/report.schema.json` and `/User
 ### Finding 1: No First-Class `model_bundle_id` Field Exists Today
 - In `llm-release-gate.report/v1`, `candidate.digest` is the SHA-256 digest of the **candidate YAML configuration file** (`candidate.yaml`) or ingested Promptfoo JSON file—**not** a digest of the model weights, tokenizer, or model bundle directory.
 - Top-level and nested objects in `schemas/report.schema.json` set `"additionalProperties": false`, EXCEPT `candidate.metadata` (`map[string]string` in Go, `"type": "object"` in JSON Schema).
-- Existing fixtures in `/Users/enes/GitHub/llm-release-gate/examples/basic/baselines/approved.json` set:
+- Existing fixtures in `llm-release-gate/examples/basic/baselines/approved.json` set:
   ```json
   "candidate": {
     "name": "customer-assistant-candidate-v1.1",
@@ -64,13 +64,13 @@ From `/Users/enes/GitHub/llm-release-gate/schemas/report.schema.json` and `/User
 
 ### Finding 2: Plain JSON Output Without Cryptographic Signatures
 - `llm-release-gate` outputs plain JSON (`report.json`) and Markdown (`report.md`).
-- As documented in `/Users/enes/GitHub/llm-release-gate/docs/security.md`, `llm-release-gate` does not sign `report.json` or emit DSSE/in-toto attestations.
+- As documented in `llm-release-gate/docs/security.md`, `llm-release-gate` does not sign `report.json` or emit DSSE/in-toto attestations.
 
 ---
 
 ## 4. Adapter Design & Binding Contract for `ai-model-provenance-gate`
 
-To honor strict security guarantees without modifying `/Users/enes/GitHub/llm-release-gate`:
+To honor strict security guarantees without modifying `llm-release-gate`:
 
 1. **Artifact Binding Resolution (`binding_status`):**
    - The `llmreleasegate` adapter inspects `candidate.metadata["model_bundle_id"]` (and optional `candidate.metadata["lora_adapter_bundle_id"]` / `candidate.metadata["base_model_bundle_id"]`).

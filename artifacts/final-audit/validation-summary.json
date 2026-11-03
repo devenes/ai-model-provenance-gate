@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-10-31T02:17:30+03:00",
   "project": "ai-model-provenance-gate",
-  "workspace": "/Users/enes/GitHub/ai-model-provenance-gate",
+  "workspace": "ai-model-provenance-gate",
   "go_version": "go1.27.3 darwin/arm64",
   "overall_status": "PASS",
   "suites": [

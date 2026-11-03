@@ -1,6 +1,26 @@
-# AI Model Provenance Gate
+<div align="center">
 
-**A lightweight, CPU-only, Go-native CLI for AI model artifact identity, CycloneDX 1.7 AI/ML-BOM generation, OpenSSF Model Signing v1.0 verification, evaluation evidence binding, and fail-closed release qualification.**
+# 🛡️ AI Model Provenance Gate
+
+**Go-Native AI Model Artifact Identity, CycloneDX 1.7 AI/ML-BOM, OpenSSF Model Signing v1.0 & Release Qualification Gate**
+
+[![CI](https://github.com/devenes/ai-model-provenance-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/devenes/ai-model-provenance-gate/actions/workflows/ci.yml)
+[![Release Packaging](https://github.com/devenes/ai-model-provenance-gate/actions/workflows/release.yml/badge.svg)](https://github.com/devenes/ai-model-provenance-gate/actions/workflows/release.yml)
+[![Go Version](https://img.shields.io/badge/Go-1.27.3-00ADD8?logo=go&logoColor=white)](go.mod)
+[![CycloneDX](https://img.shields.io/badge/CycloneDX-1.7%20AI%2FML--BOM-6f42c1)](docs/standards/cyclonedx-mlbom.md)
+[![OpenSSF OMS](https://img.shields.io/badge/OpenSSF%20Model%20Signing-v1.0%20(87%2F87%20Conformance)-0969da)](docs/standards/openssf-model-signing.md)
+[![in-toto & SLSA](https://img.shields.io/badge/Attestations-in--toto%20v1%20%7C%20SLSA%20v1.2-2ea44f)](docs/standards/in-toto-and-slsa.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+[**Overview**](#1-overview) •
+[**Architecture**](#5-architecture-overview) •
+[**Supported Standards**](#6-supported-standards-and-specifications) •
+[**Installation**](#7-installation) •
+[**60-Second Quickstart**](#8-60-second-quickstart) •
+[**CLI Reference**](#9-cli-command-reference) •
+[**Tampering Demo**](#10-end-to-end-tampering-demonstration)
+
+</div>
 
 ---
 

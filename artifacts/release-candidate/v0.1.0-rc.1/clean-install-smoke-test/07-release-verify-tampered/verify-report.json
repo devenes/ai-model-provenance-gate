@@ -34,7 +34,7 @@
     ],
     "qualification_verification": {
       "status": "INVALID",
-      "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/05-gate-pass/attestation.json",
+      "attestation_path": "ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/05-gate-pass/attestation.json",
       "attestation_digest": "sha256:5b7ad472598459972ff17765bf7197881cb36b75f1d98478f419cd2295829976",
       "signer_id": "release-signer-1",
       "signer_key_id": "release-signer-1",

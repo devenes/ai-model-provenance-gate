@@ -1,6 +1,6 @@
 # OpenSSF Model Signing (OMS v1.0) Upstream Conformance Report
 
-**Binary Tested:** `/Users/enes/GitHub/ai-model-provenance-gate/bin/ai-model-provenance`  
+**Binary Tested:** `ai-model-provenance-gate/bin/ai-model-provenance`  
 **Upstream Suite:** `https://github.com/ossf/model-signing-spec` (`commit 91bf841e8ccf97a3ed97309387e9298d1ac18ba2`)  
 **OCI Fixtures:** `ghcr.io/ossf/model-signing-spec/conformance-test-cases:v1.0.0`
 

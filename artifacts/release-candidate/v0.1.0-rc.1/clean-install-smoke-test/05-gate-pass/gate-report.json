@@ -226,7 +226,7 @@
   "oms": {
     "status": "VERIFIED",
     "mode": "native",
-    "signature_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/03-oms/model.sig.json",
+    "signature_path": "ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/03-oms/model.sig.json",
     "signature_digest": "sha256:01c6e8a3074036e2a2031f5a74ce72c252b32d670ac611ddcef8ab9393ff5cef",
     "predicate_type": "https://model_signing/signature/v1.0",
     "is_sigstore_bundle": true,
@@ -239,9 +239,9 @@
     "reason": "verified OMS https://model_signing/signature/v1.0 signature and 8 component file digests"
   },
   "evaluation": {
-    "report_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/04-eval/report.json",
+    "report_path": "ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/04-eval/report.json",
     "report_digest": "sha256:3d39c8820b4354c5b2660d3a5db189f36b60d1236d254301face8dfecba03449",
-    "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/04-eval/eval-attestation.dsse.json",
+    "attestation_path": "ai-model-provenance-gate/artifacts/release-candidate/v0.1.0-rc.1/clean-install-smoke-test/04-eval/eval-attestation.dsse.json",
     "attestation_digest": "sha256:d435fe46f4f401f743550c6370306ae0c21920f16c67e65ec49a08d1b5716a19",
     "attestation_kind": "TRUSTED_EVALUATOR_ATTESTATION",
     "schema_version": "llm-release-gate.report/v1",

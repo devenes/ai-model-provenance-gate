@@ -3,7 +3,7 @@
   "report_schema": "llm-release-gate.report/v1",
   "predicate_type": "https://schemas.devenes.org/ai-model-provenance-gate/evaluation-evidence/v1",
   "sibling_repository_isolated": true,
-  "sibling_fixture_tested": "/Users/enes/GitHub/llm-release-gate/examples/basic/baselines/approved.json",
+  "sibling_fixture_tested": "llm-release-gate/examples/basic/baselines/approved.json",
   "status": "PASS",
   "separated_trust_concepts": [
     "report_integrity_verified",

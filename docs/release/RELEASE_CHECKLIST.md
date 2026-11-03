@@ -40,7 +40,7 @@
 Because all Git commits, tags, pushes, and GitHub Releases are strictly gated on explicit owner authorization, execute the following steps when ready to publish `v0.1.0-rc.1`:
 
 1. **Confirm License Selection (`OWNER_APPROVAL_REQUIRED`):**
-   - Review `/Users/enes/GitHub/ai-model-provenance-gate/LICENSE` (`MIT License`, `Copyright (c) 2026 Enes Turan`) and confirm approval for public open-source distribution.
+   - Review `ai-model-provenance-gate/LICENSE` (`MIT License`, `Copyright (c) 2026 Enes Turan`) and confirm approval for public open-source distribution.
 2. **Stage and Commit Release Candidate (`main`):**
    ```bash
    git add .

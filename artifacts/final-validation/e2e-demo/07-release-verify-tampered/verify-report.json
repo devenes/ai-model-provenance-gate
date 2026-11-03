@@ -34,7 +34,7 @@
     ],
     "qualification_verification": {
       "status": "INVALID",
-      "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-validation/e2e-demo/05-gate-evaluate/attestation.json",
+      "attestation_path": "ai-model-provenance-gate/artifacts/final-validation/e2e-demo/05-gate-evaluate/attestation.json",
       "attestation_digest": "sha256:0c7b4ab6a930dbb5bfa21a947c1ea6a4e0e9e3a74e08b5ebd85abaafa0e942d0",
       "signer_id": "test-release-signer-1",
       "signer_key_id": "test-release-signer-1",

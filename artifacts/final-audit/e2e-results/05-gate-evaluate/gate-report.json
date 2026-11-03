@@ -238,7 +238,7 @@
   "oms": {
     "status": "VERIFIED",
     "mode": "native",
-    "signature_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-audit/e2e-results/03-oms/model.sig.json",
+    "signature_path": "ai-model-provenance-gate/artifacts/final-audit/e2e-results/03-oms/model.sig.json",
     "signature_digest": "sha256:75f52ea749e8aed8178c149ec20b5a700994c1bccd3c2812132338392bd4d354",
     "predicate_type": "https://model_signing/signature/v1.0",
     "is_sigstore_bundle": true,
@@ -251,9 +251,9 @@
     "reason": "verified OMS https://model_signing/signature/v1.0 signature and 8 component file digests"
   },
   "evaluation": {
-    "report_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-audit/e2e-results/04-evaluation/eval-report.json",
+    "report_path": "ai-model-provenance-gate/artifacts/final-audit/e2e-results/04-evaluation/eval-report.json",
     "report_digest": "sha256:867c8230daa32ae07d1e9947bd9f39b26aa91846379580c781b22368ca706d79",
-    "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-audit/e2e-results/04-evaluation/eval-attestation.dsse.json",
+    "attestation_path": "ai-model-provenance-gate/artifacts/final-audit/e2e-results/04-evaluation/eval-attestation.dsse.json",
     "attestation_digest": "sha256:d5402c1d44c18babf5a0b72db3e600876084637945d3fee73cf25b669f0a3e56",
     "attestation_kind": "TRUSTED_EVALUATOR_ATTESTATION",
     "schema_version": "llm-release-gate.report/v1",

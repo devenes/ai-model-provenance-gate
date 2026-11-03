@@ -33,7 +33,7 @@
     ],
     "qualification_verification": {
       "status": "UNTRUSTED",
-      "attestation_path": "/Users/enes/GitHub/ai-model-provenance-gate/artifacts/final-audit/e2e-results/neg-10-untrusted-gate-out/attestation.json",
+      "attestation_path": "ai-model-provenance-gate/artifacts/final-audit/e2e-results/neg-10-untrusted-gate-out/attestation.json",
       "attestation_digest": "sha256:f6895e4598e291d8a88bd01ea2652f1e29d9418cda121032968f295296499b0d",
       "signer_key_id": "untrusted-signer-1",
       "predicate": {

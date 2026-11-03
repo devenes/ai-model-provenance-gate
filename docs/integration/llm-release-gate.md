@@ -2,7 +2,7 @@
 
 ## 1. Current State of `llm-release-gate` (`llm-release-gate.report/v1`)
 
-Read-only inspection of `/Users/enes/GitHub/llm-release-gate` confirmed:
+Read-only inspection of `llm-release-gate` confirmed:
 - `llm-release-gate` emits JSON reports conforming to `schemas/report.schema.json` (`"schemaVersion": "llm-release-gate.report/v1"`).
 - Top-level `gateStatus` values are `"PASS"`, `"FAIL"`, `"BLOCKED"`, and `"NOT_RUN"`, paired with `evidenceQuality` (`"COMPLETE"` or `"LIMITED"`) and `exitCode` (`0..4`).
 - `suite.digest` (`sha256:<64-hex>`) and `dataset.digest` (`sha256:<64-hex>`) record the cryptographic digests of the evaluation suite and test dataset.
@@ -82,7 +82,7 @@ If an operator takes an unbound `report.json` (which did not record `candidate.m
 
 ## 3. Non-Invasive Proposal for Future `llm-release-gate` v1.1 Enhancement
 
-*(Note: Per strict isolation rules, `/Users/enes/GitHub/llm-release-gate` has not been modified. This section documents the proposed upstream contract for a future version of `llm-release-gate`.)*
+*(Note: Per strict isolation rules, `llm-release-gate` has not been modified. This section documents the proposed upstream contract for a future version of `llm-release-gate`.)*
 
 1. **First-Class `candidate.modelBundleId` Field in `schemas/report.schema.json`:**
    Add an optional pattern-validated field to `candidate` in `schemas/candidate.schema.json` and `schemas/report.schema.json`:

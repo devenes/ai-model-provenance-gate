@@ -1,7 +1,7 @@
 # Final Implementation, Security Engineering, and Release Validation Report
 
 **Product:** AI Model Provenance Gate (`ai-model-provenance-gate`)  
-**Repository Path:** `/Users/enes/GitHub/ai-model-provenance-gate`  
+**Repository Path:** `ai-model-provenance-gate`  
 **Generated:** 2026-10-31T00:41:00+03:00
 
 ---
@@ -17,7 +17,7 @@
 | Git Version | `git version 2.54.0 (Apple Git-157)` |
 | Installed Quality/Security Tools | `golangci-lint 2.14.0`, `govulncheck v1.9.0`, `shellcheck 0.11.0`, `openssl 4.0.3`, `jq`, `shasum` |
 | External Optional CLIs on Host | `cosign`: `NOT_FOUND`, `model_signing`: `NOT_FOUND`, `modelscan`: `NOT_FOUND`, `cyclonedx`: `NOT_FOUND` |
-| Sibling Repository Isolation | `/Users/enes/GitHub/llm-release-gate` and `/Users/enes/GitHub/ai-platform-conformance-kit` inspected strictly read-only (`git status` verified clean and untouched) |
+| Sibling Repository Isolation | `llm-release-gate` and `ai-platform-conformance-kit` inspected strictly read-only (`git status` verified clean and untouched) |
 
 Full baseline reports are stored in:
 - [`artifacts/baseline/environment-report.md`](../artifacts/baseline/environment-report.md)
@@ -82,7 +82,7 @@ Every test status below reflects actual command execution on the target machine:
 | **CycloneDX 1.6 & 1.7 Official Schema Validation** | `go test -v ./internal/bom` & `./bin/ai-model-provenance bom validate` | **PASS** | Validated 1.6 & 1.7 ML-BOMs against official `bom-1.7.schema.json`, `cyclonedx-go v0.12.0`, and 1:1 inventory correspondence |
 | **OMS v1.0 Upstream Conformance (`ossf/model-signing-spec`)** | `pytest --entrypoint=bin/ai-model-provenance` & `go test -v ./internal/oms` | **PASS** | **80 passed, 0 failed** in default offline suite; **55/55 passed** in `test_verify.py` (**87/87** total offline-capable conformance cases across bare-key, X.509 PKI chain, and Sigstore v0.3 keyless bundles) |
 | **OMS External Python CLI (`model_signing`)** | `VerifyBundle(..., ModeExternalCLI)` | **BLOCKED** | External `model_signing` Python CLI is not installed on host (`NOT_FOUND`); adapter verified to fail closed with `BLOCKED` (`ErrExternalCLIUnavailable`) and never simulate success |
-| **LLM Release Gate Compatibility** | `go test -v ./internal/evaluation/llmreleasegate` | **PASS** | Verified bound/signed `PASS`, mismatched `FAIL`, `BLOCKED`, `NOT_RUN`, tampered digest `FAIL`, and verified live read-only sibling fixture (`/Users/enes/GitHub/llm-release-gate/examples/basic/baselines/approved.json`) returns `UNBOUND` / `BLOCKED` |
+| **LLM Release Gate Compatibility** | `go test -v ./internal/evaluation/llmreleasegate` | **PASS** | Verified bound/signed `PASS`, mismatched `FAIL`, `BLOCKED`, `NOT_RUN`, tampered digest `FAIL`, and verified live read-only sibling fixture (`llm-release-gate/examples/basic/baselines/approved.json`) returns `UNBOUND` / `BLOCKED` |
 | **14-Step End-to-End Demonstration** | `make e2e` (`./scripts/run-e2e-demo.sh`) | **PASS** | Approved bundle passed `gate evaluate` (exit `0`) and `release verify` (exit `0`); tampered tokenizer bundle rejected by `release verify` with `GATE_STATUS=FAIL EXIT_CODE=1` (`DEPLOYMENT_ARTIFACT_TAMPERED`) |
 | **macOS Apple Silicon (`darwin/arm64`) Build & Runtime** | `make build` & `make e2e` | **PASS** | Compiled and executed all runtime tests natively |
 | **macOS Intel (`darwin/amd64`) Build** | `make release-artifacts` | **PASS (Build) / NOT_RUN (Runtime)** | Cross-compiled `ai-model-provenance_0.1.0_darwin_amd64.tar.gz`; native `amd64` runtime not executed |
@@ -118,7 +118,7 @@ Executed via `./scripts/run-e2e-demo.sh` using synthetic fixtures and ephemeral 
 1. **External CLI Binaries (`model_signing`, `cosign`, `modelscan`):**
    Not pre-installed on the baseline development machine. Offline key-based verification is fully implemented and tested natively in Go using standard DSSE v1.0, in-toto Statement v1, Sigstore Bundle v0.3, and PKIX PEM keys; optional subprocess adapters are implemented and verified to fail closed (`BLOCKED`) when those external binaries are absent.
 2. **Upstream `llm-release-gate` Integration:**
-   Because `/Users/enes/GitHub/llm-release-gate` is strictly read-only, unmodified legacy `llm-release-gate` fixtures do not include `model_bundle_id` and are properly rejected as `UNBOUND` / `BLOCKED`. Today's integration uses `candidate.metadata["model_bundle_id"]` (valid under `llm-release-gate`'s existing `report.schema.json`) + `evidence bind-eval`. A separate upstream enhancement proposal is documented in [`docs/integration/llm-release-gate.md`](integration/llm-release-gate.md).
+   Because `llm-release-gate` is strictly read-only, unmodified legacy `llm-release-gate` fixtures do not include `model_bundle_id` and are properly rejected as `UNBOUND` / `BLOCKED`. Today's integration uses `candidate.metadata["model_bundle_id"]` (valid under `llm-release-gate`'s existing `report.schema.json`) + `evidence bind-eval`. A separate upstream enhancement proposal is documented in [`docs/integration/llm-release-gate.md`](integration/llm-release-gate.md).
 3. **No SLSA Build Provenance Claim:**
    `ai-model-provenance-gate` is a post-hoc verifier and release qualification gate, not a training build service. It emits `release-qualification/v1` predicates and never claims SLSA build provenance generation.
 4. **Local Filesystem Scope:**

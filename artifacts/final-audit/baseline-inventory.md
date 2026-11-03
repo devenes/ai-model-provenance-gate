@@ -1,7 +1,7 @@
 # Read-Only Baseline Inspection Inventory (`artifacts/final-audit/baseline-inventory.md`)
 
 **Timestamp:** `2026-10-31T02:03:00+03:00`  
-**Workspace:** `/Users/enes/GitHub/ai-model-provenance-gate`
+**Workspace:** `ai-model-provenance-gate`
 
 ---
 
@@ -10,8 +10,8 @@
 - **Branch:** `main` (uncommitted initial workspace tree; zero remote pushes or tags)
 - **Remotes:** None configured (`git remote -v` empty)
 - **Sibling Isolation Check:**
-  - `/Users/enes/GitHub/llm-release-gate`: clean (`git status -s` empty)
-  - `/Users/enes/GitHub/ai-platform-conformance-kit`: clean (`git status -s` empty)
+  - `llm-release-gate`: clean (`git status -s` empty)
+  - `ai-platform-conformance-kit`: clean (`git status -s` empty)
 
 ---
 

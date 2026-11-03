@@ -1,7 +1,7 @@
 # Phase 0 — Release Candidate Baseline Inspection (`v0.1.0-rc.1`)
 
 **Inspection Timestamp:** `2026-10-31T08:28:00+03:00`  
-**Repository:** `/Users/enes/GitHub/ai-model-provenance-gate`  
+**Repository:** `ai-model-provenance-gate`  
 **Target Release Candidate:** `v0.1.0-rc.1`
 
 ---
@@ -36,7 +36,7 @@
 - **No.** Neither `v0.1.0` nor `v0.1.0-rc.1` exists locally or on the remote.
 
 ### 5. Does `LICENSE` exist?
-- **Yes (in local working tree; owner approval required prior to public push).** `/Users/enes/GitHub/ai-model-provenance-gate/LICENSE` is present in the workspace and contains the standard `MIT License` (`Copyright (c) 2026 Enes Turan`), matching the sibling repository `/Users/enes/GitHub/llm-release-gate/LICENSE`. Because it is currently uncommitted, its publication status is tracked as `OWNER_APPROVAL_REQUIRED` in `docs/release/OPEN_SOURCE_READINESS.md` before any public GitHub push or release.
+- **Yes (in local working tree; owner approval required prior to public push).** `ai-model-provenance-gate/LICENSE` is present in the workspace and contains the standard `MIT License` (`Copyright (c) 2026 Enes Turan`), matching the sibling repository `llm-release-gate/LICENSE`. Because it is currently uncommitted, its publication status is tracked as `OWNER_APPROVAL_REQUIRED` in `docs/release/OPEN_SOURCE_READINESS.md` before any public GitHub push or release.
 
 ### 6. Are repository URLs, module names, and binary names consistent?
 - **Yes.**
@@ -73,5 +73,5 @@
 
 ## 3. Sibling Repository Isolation Check
 
-- `/Users/enes/GitHub/llm-release-gate`: Inspected read-only (`git status` unmodified).
-- `/Users/enes/GitHub/ai-platform-conformance-kit`: Untouched (`git status` unmodified).
+- `llm-release-gate`: Inspected read-only (`git status` unmodified).
+- `ai-platform-conformance-kit`: Untouched (`git status` unmodified).

@@ -31,6 +31,6 @@
 1. **Optional External Python Binaries (`model_signing`, `modelscan`):**
    - Not required for `ai-model-provenance-gate` operation. Offline OMS v1.0 signing/verification (bare-key, X.509 certificate chain, and Sigstore v0.3 keyless verification) and static Safetensors/Pickle inspection run 100% natively in Go. Optional external CLI subprocess adapters fail closed (`BLOCKED`, exit `3`) when those Python tools are not installed on the host.
 2. **Upstream `llm-release-gate` Native Signing:**
-   - Because `/Users/enes/GitHub/llm-release-gate` is strictly read-only, native evaluator flag enhancements (`--bundle-manifest` / `--sign-attestation`) are documented as a separate proposal in [`docs/integration/llm-release-gate.md`](../integration/llm-release-gate.md).
+   - Because `llm-release-gate` is strictly read-only, native evaluator flag enhancements (`--bundle-manifest` / `--sign-attestation`) are documented as a separate proposal in [`docs/integration/llm-release-gate.md`](../integration/llm-release-gate.md).
 3. **Cross-Compiled Target Runtime Execution:**
    - Static binaries for `linux/amd64`, `linux/arm64`, `darwin/amd64`, and `windows/amd64` were cross-compiled and checksummed (`PASS`); runtime execution on those non-host OS/architectures is `NOT_RUN` on the local macOS Apple Silicon host and is covered by the GitHub Actions `ubuntu-latest` CI workflow ([`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)).

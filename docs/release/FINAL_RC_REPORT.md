@@ -13,7 +13,7 @@
 **AI Model Provenance Gate `v0.1.0-rc.1`** has passed all local engineering, static analysis, race detection, vulnerability scanning, CycloneDX 1.7 official schema validation, OpenSSF Model Signing v1.0 offline conformance, clean-install smoke testing, and 10-scenario negative tampering verification gates.
 
 The verdict is recorded as **`READY_FOR_RELEASE_CANDIDATE_WITH_LIMITATIONS`** (rather than unconditional `READY_FOR_RELEASE_CANDIDATE`) to preserve strict engineering honesty regarding three external/environment boundaries:
-1. **Owner License & Push Authorization (`OWNER_APPROVAL_REQUIRED`):** `/Users/enes/GitHub/ai-model-provenance-gate/LICENSE` (`MIT License`) is present in the local workspace and packaged archives, but committing, tagging, and pushing to GitHub require explicit owner authorization.
+1. **Owner License & Push Authorization (`OWNER_APPROVAL_REQUIRED`):** `ai-model-provenance-gate/LICENSE` (`MIT License`) is present in the local workspace and packaged archives, but committing, tagging, and pushing to GitHub require explicit owner authorization.
 2. **Host-Only Native Runtime Execution (`NOT_RUN` on non-host OS/Arch):** All 5 release archives (`darwin/arm64`, `darwin/amd64`, `linux/amd64`, `linux/arm64`, `windows/amd64`) were cross-compiled (`CGO_ENABLED=0`) and structurally verified via `file`, `tar`/`zip`, and `shasum -a 256`, while native runtime execution was performed on the local `darwin/arm64` host (Linux/Windows runtime execution requires CI runners).
 3. **Live Keyless OIDC Signing Network Tests (`BLOCKED` locally):** `87/87` offline-capable tests in the official upstream `ossf/model-signing-spec` conformance suite passed (`80/80` default suite + `55/55` `test_verify.py`), while the `7` live Fulcio/Rekor OIDC token signing tests are honestly marked `BLOCKED` in local offline execution and wired to an optional `workflow_dispatch` job in `.github/workflows/ci.yml`.
 
@@ -103,6 +103,6 @@ Executed from the packaged archive `ai-model-provenance_0.1.0-rc.1_darwin_arm64.
 
 ## 6. Sibling Repository Isolation & Safety Verification
 
-- `/Users/enes/GitHub/llm-release-gate`: Untouched (`git status` clean).
-- `/Users/enes/GitHub/ai-platform-conformance-kit`: Untouched (`git status` clean).
+- `llm-release-gate`: Untouched (`git status` clean).
+- `ai-platform-conformance-kit`: Untouched (`git status` clean).
 - No commits, tags, pushes, or GitHub Releases were executed.

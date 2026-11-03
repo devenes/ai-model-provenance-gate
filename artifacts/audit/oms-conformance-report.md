@@ -6,7 +6,7 @@
 - **Upstream Commit:** `91bf841e8ccf97a3ed97309387e9298d1ac18ba2` (`main`)
 - **Pre-Committed Fixture Archive:** `ghcr.io/ossf/model-signing-spec/conformance-test-fixtures:v1.1` (`conformance-test-fixtures-v1.1.tar.gz`)
 - **Official Schema Validator:** `oms-schemas` (`https://model_signing/signature/v1.0`, `https://in-toto.io/Statement/v1`, `application/vnd.dev.sigstore.bundle.v0.3+json`)
-- **Adapter Entrypoint Tested:** `/Users/enes/GitHub/ai-model-provenance-gate/bin/ai-model-provenance` (`sign-model` and `verify-model`)
+- **Adapter Entrypoint Tested:** `ai-model-provenance-gate/bin/ai-model-provenance` (`sign-model` and `verify-model`)
 - **JSON Evidence Files:**
   - `artifacts/audit/oms-conformance-results.json` (Default offline run: `80 passed, 0 failed, 12 skipped`)
   - `artifacts/audit/oms-conformance-verify-all-results.json` (Full pre-committed verification suite including offline Sigstore verification: `55 passed, 0 failed, 0 skipped`)

@@ -5,12 +5,12 @@
 - **Context:** Phase 1 — Architecture and Technical Feasibility
 
 ## Context
-`ai-model-provenance-gate` must verify that the behavioural evaluation report produced by `/Users/enes/GitHub/llm-release-gate` (`llm-release-gate.report/v1`) applies to the exact model bundle under inspection and originates from a trusted evaluation source.
+`ai-model-provenance-gate` must verify that the behavioural evaluation report produced by `llm-release-gate` (`llm-release-gate.report/v1`) applies to the exact model bundle under inspection and originates from a trusted evaluation source.
 
-Our read-only inspection of `/Users/enes/GitHub/llm-release-gate` established two critical facts:
+Our read-only inspection of `llm-release-gate` established two critical facts:
 1. `schemas/report.schema.json` enforces `"additionalProperties": false` on all objects **except** `candidate.metadata` (`map[string]string`). It does **not** define a dedicated top-level `model_bundle_id` field, and `candidate.digest` is only the SHA-256 of `candidate.yaml`.
 2. `llm-release-gate` outputs plain JSON (`report.json`) and Markdown (`report.md`) without cryptographic signatures or DSSE envelopes.
-3. We are strictly prohibited from modifying `/Users/enes/GitHub/llm-release-gate`.
+3. We are strictly prohibited from modifying `llm-release-gate`.
 
 ## Decision
 1. **Schema-Compatible Artifact Binding via `candidate.metadata["model_bundle_id"]`:**
