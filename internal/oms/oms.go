@@ -469,6 +469,62 @@ func verifyAgainstFileMap(
 	return verifyStatementCorrespondence(isSingleFile, rootPath, inventoryFiles, sigPath, sigDigest, mode, envVer, opts.IgnoreUnsignedFiles)
 }
 
+// VerifyBytesAgainstFileMap verifies an in-memory OpenSSF Model Signing envelope against an observed file digest map
+// without performing any filesystem I/O.
+func VerifyBytesAgainstFileMap(
+	rawSig []byte,
+	inventoryFiles map[string]string,
+	opts VerifyOptions,
+) (Result, error) {
+	if len(bytes.TrimSpace(rawSig)) == 0 {
+		return Result{
+			Status: verification.StatusMissing,
+			Mode:   ModeNative,
+			Reason: "empty OpenSSF Model Signing signature bytes",
+		}, fmt.Errorf("%w: empty signature bytes", ErrInvalidOMSSignature)
+	}
+	sigDigest := digest.ComputeBytes(rawSig)
+
+	method := strings.ToLower(strings.TrimSpace(opts.Method))
+	if method == "" {
+		method = "key"
+	}
+
+	var envVer verification.EnvelopeVerification
+	var err error
+	switch method {
+	case "key":
+		envVer, err = verification.VerifyInTotoDSSE(rawSig, opts.TrustedSigners, opts.CandidateUntrustedKeys)
+	case "certificate":
+		envVer, err = verification.VerifyInTotoCertificateBundle(rawSig, opts.TrustAnchorCerts, time.Now().UTC())
+	case "sigstore":
+		envVer, err = verification.VerifyInTotoSigstoreBundle(rawSig, opts.CertificateIdentity, opts.CertificateOIDCIssuer, opts.SigstoreTrustedRootJSON)
+	default:
+		reason := fmt.Sprintf("unsupported OMS verification method %q", method)
+		return Result{
+			Status:          verification.StatusInvalid,
+			Mode:            ModeNative,
+			SignatureDigest: sigDigest,
+			Reason:          reason,
+		}, fmt.Errorf("%w: %s", ErrInvalidOMSSignature, reason)
+	}
+
+	if err != nil {
+		return Result{
+			Status:            envVer.Status,
+			Mode:              ModeNative,
+			SignatureDigest:   sigDigest,
+			IsSigstoreBundle:  envVer.IsSigstoreBundle,
+			SignerKeyID:       envVer.SignerKeyID,
+			SignerFingerprint: envVer.SignerFingerprint,
+			Algorithm:         envVer.Algorithm,
+			Reason:            envVer.Reason,
+		}, err
+	}
+
+	return verifyStatementCorrespondence(false, "", inventoryFiles, "", sigDigest, ModeNative, envVer, opts.IgnoreUnsignedFiles)
+}
+
 func verifyStatementCorrespondence(
 	isSingleFile bool,
 	rootPath string,

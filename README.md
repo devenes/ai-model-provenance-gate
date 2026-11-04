@@ -265,7 +265,7 @@ Every command and subcommand supports `--help` (exit code `0`).
 - Populates a complete root `dependencies` graph linking the root `machine-learning-model` component to its weight shards, configuration files, tokenizer artifacts, PEFT/LoRA adapters, and base model reference.
 - Explicitly tags metadata provenance (`cdx:ai:provenance:source` = `observed` vs `declared_unverified`) so self-declared `config.json` fields are never confused with cryptographically verified facts.
 
-See [`docs/standards/cyclonedx-mlbom.md`](docs/standards/cyclonedx-mlbom.md) for the complete mapping.
+See [`docs/standards/cyclonedx.md`](docs/standards/cyclonedx.md) for the complete mapping.
 
 ---
 
@@ -278,7 +278,7 @@ See [`docs/standards/cyclonedx-mlbom.md`](docs/standards/cyclonedx-mlbom.md) for
   - **`test_verify.py` verification suite (v0.2.0 & v1.0.0 key, certificate, and Sigstore bundles):** **55 / 55 passed** (`0` failures)
   - **Total offline-capable upstream cases:** **87 / 87 passed** (7 live Fulcio/Rekor OIDC network signing tests are honestly classified as `BLOCKED` in offline local runs and wired to an optional `workflow_dispatch` GitHub Actions job).
 
-See [`docs/standards/openssf-model-signing.md`](docs/standards/openssf-model-signing.md) and [`artifacts/final-audit/oms-conformance-report.md`](artifacts/final-audit/oms-conformance-report.md).
+See [`docs/standards/oms.md`](docs/standards/oms.md).
 
 ---
 
@@ -303,7 +303,7 @@ See [`docs/integration/llm-release-gate.md`](docs/integration/llm-release-gate.m
 - **Release Qualification Attestation (`release-qualification/v1`):** Emitted by `gate evaluate` as an `https://in-toto.io/Statement/v1` DSSE envelope binding the subject `model_bundle_id`, CycloneDX BOM digest, OMS verification summary, LLM Release Gate evaluation summary, policy digest, and deployment constraints.
 - **SLSA Build Provenance (`https://slsa.dev/provenance/v1` & `https://slsa.dev/provenance/v1.2`):** Ingested via `--upstream-provenance` to verify how upstream model artifacts were built (`builder.id`, `buildType`, `resolvedDependencies`), with dedicated `provenance.trusted_signers`. It is never conflated with release qualification approval.
 
-See [`docs/standards/in-toto-and-slsa.md`](docs/standards/in-toto-and-slsa.md).
+See [`docs/standards/intoto.md`](docs/standards/intoto.md) and [`docs/standards/slsa.md`](docs/standards/slsa.md).
 
 ---
 

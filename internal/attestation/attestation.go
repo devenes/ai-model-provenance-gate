@@ -355,13 +355,31 @@ func VerifyQualificationFile(
 			Reason:          fmt.Sprintf("read release qualification attestation %q: %v", path, err),
 		}, err
 	}
+	res, err := VerifyQualificationBytes(rawBytes, expectedBundleID, trustedSigners, candidateUntrustedKeys)
+	res.AttestationPath = path
+	return res, err
+}
+
+// VerifyQualificationBytes verifies in-memory bytes of a signed DSSE Release Qualification Attestation
+// against trusted signers and expected bundle identity without performing any filesystem I/O.
+func VerifyQualificationBytes(
+	rawBytes []byte,
+	expectedBundleID string,
+	trustedSigners []verification.TrustedSignerRule,
+	candidateUntrustedKeys []*signing.PublicKey,
+) (VerifiedQualification, error) {
+	if len(strings.TrimSpace(string(rawBytes))) == 0 {
+		return VerifiedQualification{
+			Status: verification.StatusMissing,
+			Reason: "empty release qualification attestation bytes",
+		}, fmt.Errorf("%w: empty attestation bytes", ErrInvalidReleaseAttestation)
+	}
 	attDigest := digest.ComputeBytes(rawBytes)
 
 	envVer, err := verification.VerifyInTotoDSSE(rawBytes, trustedSigners, candidateUntrustedKeys)
 	if err != nil {
 		return VerifiedQualification{
 			Status:            envVer.Status,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			SignerKeyID:       envVer.SignerKeyID,
 			SignerFingerprint: envVer.SignerFingerprint,
@@ -377,7 +395,6 @@ func VerifyQualificationFile(
 		)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			Reason:            reason,
 		}, fmt.Errorf("%w: %s", ErrInvalidReleaseAttestation, reason)
@@ -388,7 +405,6 @@ func VerifyQualificationFile(
 		reason := fmt.Sprintf("invalid subject sha256 digest %q in attestation", subjHex)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			Reason:            reason,
 		}, fmt.Errorf("%w: %s", ErrInvalidReleaseAttestation, reason)
@@ -400,7 +416,6 @@ func VerifyQualificationFile(
 		reason := fmt.Sprintf("decode release qualification predicate: %v", err)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			Reason:            reason,
 		}, fmt.Errorf("%w: %s", ErrInvalidReleaseAttestation, reason)
@@ -413,7 +428,6 @@ func VerifyQualificationFile(
 		)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			SubjectBundleID:   subjBundleID,
 			Predicate:         pred,
@@ -425,7 +439,6 @@ func VerifyQualificationFile(
 		reason := fmt.Sprintf("release qualification attestation records decision.gate_status=%q (requires PASS)", pred.Decision.GateStatus)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			SubjectBundleID:   subjBundleID,
 			Predicate:         pred,
@@ -440,7 +453,6 @@ func VerifyQualificationFile(
 		)
 		return VerifiedQualification{
 			Status:            verification.StatusInvalid,
-			AttestationPath:   path,
 			AttestationDigest: attDigest,
 			SignerID:          envVer.MatchedSignerID,
 			SignerKeyID:       envVer.SignerKeyID,
@@ -453,7 +465,6 @@ func VerifyQualificationFile(
 
 	return VerifiedQualification{
 		Status:            verification.StatusVerified,
-		AttestationPath:   path,
 		AttestationDigest: attDigest,
 		SignerID:          envVer.MatchedSignerID,
 		SignerKeyID:       envVer.SignerKeyID,

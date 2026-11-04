@@ -7,7 +7,9 @@
 *.zip
 *.exe
 
-# Coverage and test output
+# Coverage, logs, and generated runtime artifacts
+/artifacts/
+*.log
 coverage.out
 *.test
 

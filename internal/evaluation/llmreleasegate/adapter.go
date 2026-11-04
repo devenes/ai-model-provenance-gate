@@ -487,13 +487,67 @@ func Verify(reportPath string, opts VerifyOptions) (EvaluationSummary, error) {
 		return EvaluationSummary{}, fmt.Errorf("read evaluation report %q: %w", reportPath, err)
 	}
 
+	var rawAtt []byte
+	var attReadErr error
+	if strings.TrimSpace(opts.AttestationPath) != "" {
+		rawAtt, attReadErr = os.ReadFile(opts.AttestationPath)
+		if attReadErr != nil {
+			rep, repDigest, pErr := ParseAndValidateReport(rawBytes)
+			if pErr != nil {
+				return EvaluationSummary{}, pErr
+			}
+			summary := EvaluationSummary{
+				ReportPath:          reportPath,
+				ReportDigest:        repDigest,
+				AttestationPath:     opts.AttestationPath,
+				SchemaVersion:       rep.SchemaVersion,
+				RunID:               rep.RunID,
+				Timestamp:           rep.Timestamp,
+				ToolVersion:         rep.ToolVersion,
+				CandidateName:       rep.Candidate.Name,
+				CandidateModel:      rep.Candidate.Model,
+				CandidateDigest:     rep.Candidate.Digest,
+				SuiteName:           rep.Suite.Name,
+				SuiteVersion:        rep.Suite.Version,
+				SuiteDigest:         rep.Suite.Digest,
+				DatasetDigest:       rep.Dataset.Digest,
+				DatasetCaseCount:    rep.Dataset.CaseCount,
+				ReportedGateStatus:  rep.GateStatus,
+				EvidenceQuality:     rep.EvidenceQuality,
+				ReportedExitCode:    rep.ExitCode,
+				ExpectedBundleID:    opts.ExpectedBundleID,
+				TrustStatus:         TrustInvalidOrTampered,
+				EffectiveGateStatus: GateBlocked,
+				Reason:              fmt.Sprintf("read evaluation attestation %q: %v", opts.AttestationPath, attReadErr),
+			}
+			if rep.Candidate.Metadata != nil {
+				summary.DeclaredBundleID = strings.TrimSpace(rep.Candidate.Metadata[MetadataKeyModelBundleID])
+			}
+			return summary, attReadErr
+		}
+	}
+
+	sum, err := VerifyBytes(rawBytes, rawAtt, opts)
+	sum.ReportPath = reportPath
+	if strings.TrimSpace(opts.AttestationPath) != "" {
+		sum.AttestationPath = opts.AttestationPath
+	}
+	return sum, err
+}
+
+// VerifyBytes inspects and validates an in-memory llm-release-gate report and optional signed evaluation attestation
+// without performing any filesystem I/O.
+func VerifyBytes(rawBytes []byte, rawAtt []byte, opts VerifyOptions) (EvaluationSummary, error) {
+	if err := digest.Validate(opts.ExpectedBundleID); err != nil {
+		return EvaluationSummary{}, fmt.Errorf("expected bundle ID: %w", err)
+	}
+
 	rep, repDigest, err := ParseAndValidateReport(rawBytes)
 	if err != nil {
 		return EvaluationSummary{}, err
 	}
 
 	summary := EvaluationSummary{
-		ReportPath:         reportPath,
 		ReportDigest:       repDigest,
 		SchemaVersion:      rep.SchemaVersion,
 		RunID:              rep.RunID,
@@ -523,15 +577,7 @@ func Verify(reportPath string, opts VerifyOptions) (EvaluationSummary, error) {
 	var attestedBindingMode string
 	var matchedAllowOperatorEndorsement bool
 	var matchedSignerRole string
-	if strings.TrimSpace(opts.AttestationPath) != "" {
-		summary.AttestationPath = opts.AttestationPath
-		rawAtt, readErr := os.ReadFile(opts.AttestationPath)
-		if readErr != nil {
-			summary.TrustStatus = TrustInvalidOrTampered
-			summary.EffectiveGateStatus = GateBlocked
-			summary.Reason = fmt.Sprintf("read evaluation attestation %q: %v", opts.AttestationPath, readErr)
-			return summary, readErr
-		}
+	if len(bytes.TrimSpace(rawAtt)) > 0 {
 		summary.AttestationDigest = digest.ComputeBytes(rawAtt)
 
 		envVer, verErr := verification.VerifyInTotoDSSE(rawAtt, opts.TrustedSigners, opts.CandidateUntrustedKeys)
